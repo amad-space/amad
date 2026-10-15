@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أَمَد | مساحتك الهادئة للبطاقات الرقمية</title>
+    <title>أَمَد | المعرض الرقمي الفاخر للبطاقات</title>
     <style>
         :root {
-            --bg-color: #fcfaf8;
-            --card-surface: #ffffff;
-            --text-main: #4a4543;
-            --text-muted: #8c837f;
-            --accent-tone: #d8b4fe; /* بنفسجي باستيل ناعم */
-            --accent-hover: #c084fc;
-            --border-line: #f0e6e0;
-            --input-bg: #f9f6f3;
+            --bg-color: #f7f5f2;
+            --surface-color: #ffffff;
+            --text-primary: #2c2825;
+            --text-secondary: #7a726d;
+            --accent-tone: #b8977e;
+            --accent-glow: rgba(184, 151, 126, 0.15);
+            --border-subtle: #e6e1dc;
+            --input-bg: #faf8f6;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121110;
+            --surface-color: #1c1a18;
+            --text-primary: #f3f0ec;
+            --text-secondary: #a39b95;
+            --accent-tone: #d4b59d;
+            --accent-glow: rgba(212, 181, 157, 0.2);
+            --border-subtle: #2d2926;
+            --input-bg: #161413;
         }
 
         * {
@@ -21,12 +32,12 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -34,177 +45,207 @@
             padding: 40px 20px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
+        .top-nav {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
         }
 
-        h1 {
-            font-size: 3rem;
-            color: #2d2624;
-            letter-spacing: 4px;
-            margin-bottom: 8px;
-            font-weight: 400;
-        }
-
-        h1 span {
-            color: var(--accent-hover);
-            font-weight: 600;
-        }
-
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 1rem;
+        .theme-btn {
+            background: var(--surface-color);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 8px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
             letter-spacing: 1px;
         }
 
-        .container {
-            max-width: 850px;
-            width: 100%;
+        .theme-btn:hover {
+            border-color: var(--accent-tone);
         }
 
-        /* تصميم البطاقة كدفتر رسائل فاخر وفاتح */
-        .art-card {
-            background: var(--card-surface);
-            border: 1px solid var(--border-line);
-            border-radius: 24px;
-            padding: 45px;
-            margin-bottom: 35px;
-            box-shadow: 0 10px 40px rgba(74, 69, 67, 0.03);
-            position: relative;
-            overflow: hidden;
+        header {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
-        .art-card::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; width: 6px; height: 100%;
-            background: var(--accent-tone);
-        }
-
-        .card-heading {
-            font-size: 1.4rem;
-            color: #2d2624;
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 6px;
+            font-weight: 300;
             margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        h1 span {
+            color: var(--accent-tone);
             font-weight: 500;
         }
 
-        .card-explanation {
+        p.brand-sub {
+            color: var(--text-secondary);
             font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            line-height: 1.7;
+            letter-spacing: 2px;
         }
 
-        /* منتقي الألوان الهادئة */
-        .palette-label {
+        .wrapper {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* كارد المعرض الفني */
+        .art-studio-box {
+            background: var(--surface-color);
+            border: 1px solid var(--border-subtle);
+            border-radius: 32px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .section-tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-tone);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .studio-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .studio-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        /* منتقي الألوان الفني */
+        .palette-group {
+            margin-bottom: 30px;
+        }
+
+        .palette-title {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             margin-bottom: 12px;
             display: block;
         }
 
-        .palette-options {
+        .color-palette {
             display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
+            gap: 15px;
         }
 
-        .palette-circle {
-            width: 30px; height: 30px;
+        .color-node {
+            width: 36px; height: 36px;
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid transparent;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
         }
 
-        .palette-circle.selected {
+        .color-node.active {
             transform: scale(1.15);
-            border-color: #2d2624;
+            border-color: var(--text-primary);
         }
 
-        /* خانات الإدخال بلمسة أَمَد الفنية */
-        .amad-input-group {
+        /* تخطيط الحقول الفنية */
+        .grid-inputs {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-bottom: 20px;
         }
 
-        @media (max-width: 768px) {
-            .amad-input-group { grid-template-columns: 1fr; }
+        @media(max-width: 768px) {
+            .grid-inputs { grid-template-columns: 1fr; }
         }
 
-        .amad-field {
+        .field-container {
             position: relative;
         }
 
-        .amad-field::after {
+        .field-container::after {
             content: 'أَمَد';
             position: absolute;
             left: 20px; top: 50%;
             transform: translateY(-50%);
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             letter-spacing: 3px;
-            color: var(--text-muted);
-            opacity: 0.3;
+            color: var(--text-secondary);
+            opacity: 0.25;
             pointer-events: none;
         }
 
-        .input-box, .textarea-box {
+        .input-element, .textarea-element {
             width: 100%;
             background: var(--input-bg);
-            border: 1px solid var(--border-line);
-            border-radius: 16px;
-            padding: 16px 20px;
-            color: var(--text-main);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 18px 22px;
+            color: var(--text-primary);
             font-size: 0.95rem;
             outline: none;
         }
 
-        .textarea-box {
+        .textarea-element {
             grid-column: 1 / -1;
-            height: 120px;
+            height: 130px;
             resize: none;
         }
 
-        .input-box:focus, .textarea-box:focus {
-            border-color: var(--accent-hover);
-            background: #ffffff;
-            box-shadow: 0 0 15px rgba(192, 132, 252, 0.1);
+        .input-element:focus, .textarea-element:focus {
+            border-color: var(--accent-tone);
+            background: var(--surface-color);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        /* معاينة حية هادئة ومبتكرة */
-        .preview-canvas {
-            background: #faf6f5;
-            border: 1px dashed var(--accent-hover);
-            border-radius: 20px;
-            padding: 30px;
+        /* لوحة المعاينة الحية الفخمة */
+        .live-canvas {
+            background: var(--bg-color);
+            border: 1px dashed var(--accent-tone);
+            border-radius: 24px;
+            padding: 40px;
             text-align: center;
             margin: 30px 0;
+            position: relative;
         }
 
-        .preview-title-tag {
-            font-size: 0.75rem;
+        .canvas-label {
+            font-size: 0.7rem;
             letter-spacing: 3px;
-            color: var(--accent-hover);
             text-transform: uppercase;
-            margin-bottom: 12px;
+            color: var(--accent-tone);
+            margin-bottom: 15px;
             font-weight: 600;
         }
 
-        .preview-body-text {
-            font-size: 1.2rem;
-            color: #383230;
-            line-height: 1.8;
-            margin-bottom: 15px;
+        .canvas-text {
+            font-size: 1.35rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
             font-style: italic;
+            font-weight: 300;
         }
 
-        .submit-btn {
-            background: #2d2624;
-            color: #ffffff;
-            padding: 16px;
+        .action-submit-btn {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            padding: 18px;
             border-radius: 20px;
             font-weight: 500;
             font-size: 1rem;
@@ -214,123 +255,122 @@
             letter-spacing: 1px;
         }
 
-        .submit-btn:hover {
-            background: var(--accent-hover);
-            color: #2d2624;
+        .action-submit-btn:hover {
+            background: var(--accent-tone);
+            color: #ffffff;
             transform: translateY(-2px);
         }
 
-        /* بطاقة التصميم الخاص (بدينار) */
-        .custom-art-card {
-            background: var(--card-surface);
-            border: 1px solid var(--border-line);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(74, 69, 67, 0.03);
+        /* كارد التصميم الخاص */
+        .custom-art-box {
+            background: var(--surface-color);
+            border: 1px solid var(--border-subtle);
+            border-radius: 32px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.03);
             position: relative;
-            overflow: hidden;
         }
 
-        .custom-art-card::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; width: 6px; height: 100%;
-            background: #f472b6; /* وردي باستيل ناعم */
+        .price-display {
+            font-size: 1.5rem;
+            color: var(--accent-tone);
+            font-weight: 400;
+            margin: 15px 0 25px;
         }
 
-        .price-tag {
-            font-size: 1.25rem;
-            color: var(--accent-hover);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .action-link-btn {
+        .custom-order-btn {
             display: inline-block;
-            background: #fdf2f8;
-            color: #db2777;
-            border: 1px solid #fbcfe8;
-            padding: 14px 28px;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            padding: 16px 30px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
             text-align: center;
             width: 100%;
-            margin-top: 20px;
+            letter-spacing: 1px;
         }
 
-        .action-link-btn:hover {
-            background: #db2777;
-            color: #ffffff;
+        .custom-order-btn:hover {
+            border-color: var(--accent-tone);
+            color: var(--accent-tone);
         }
 
         footer {
-            margin-top: 50px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            margin-top: 60px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
+
+    <div class="top-nav">
+        <button class="theme-btn" onclick="toggleTheme()">تغيير المظهر ✦</button>
+    </div>
 
     <header>
         <h1>أَمَد <span>✦</span></h1>
-        <p class="subtitle">مساحة هادئة تصنع أثر المشاعر</p>
+        <p class="brand-sub">المعرض الرقمي للبطاقات والإهداءات الحصرية</p>
     </header>
 
-    <div class="container">
+    <div class="wrapper">
         
-        <!-- البطاقة الجاهزة (500 فلس) -->
-        <div class="art-card">
-            <div class="card-heading">البطاقة الجاهزة (بتصميم الموقع الثابت)</div>
-            <div class="card-explanation">اختاري طابع الألوان الهادئ للبطاقة، اكتبي رسالتك، حددي بيانات المرسل إليه ورقم الشخص المستهدف لتوجيه البطاقة بكل عناية.</div>
+        <!-- قسم البطاقة الجاهزة (500 فلس) -->
+        <div class="art-studio-box">
+            <div class="section-tag">البطاقة الجاهزة</div>
+            <div class="studio-title">تصميم الموقع الثابت مع تخصيص الألوان</div>
+            <div class="studio-desc">اختاري الطابع الباستيلي الهادئ للبطاقة،دوني رسالتك، وادخلي رقم المستلم لتصل البطاقة بكل أناقة عبر الواتساب.</div>
             
-            <span class="palette-label">اختاري لون البطاقة الهادئ:</span>
-            <div class="palette-options">
-                <div class="palette-circle selected" style="background: #d8b4fe;" onclick="changePalette('#d8b4fe', this)" title="بنفسجي لافندر"></div>
-                <div class="palette-circle" style="background: #fbcfe8;" onclick="changePalette('#fbcfe8', this)" title="وردي ضبابي"></div>
-                <div class="palette-circle" style="background: #bae6fd;" onclick="changePalette('#bae6fd', this)" title="أزرق سحابي"></div>
-                <div class="palette-circle" style="background: #a7f3d0;" onclick="changePalette('#a7f3d0', this)" title="أخضر نعناعي"></div>
-                <div class="palette-circle" style="background: #fde68a;" onclick="changePalette('#fde68a', this)" title="أصفر كريمي"></div>
-            </div>
-
-            <div class="amad-input-group">
-                <div class="amad-field">
-                    <input type="text" id="cardTo" class="input-box" placeholder="إلى (اسم المُهدى إليه)..." oninput="renderLivePreview()">
-                </div>
-                <div class="amad-field">
-                    <input type="text" id="recipientPhone" class="input-box" placeholder="رقم هاتف المُستلم للبطاقة..." oninput="renderLivePreview()">
-                </div>
-                <div class="amad-field">
-                    <input type="text" id="cardFrom" class="input-box" placeholder="من (اسم المُهدي)..." oninput="renderLivePreview()">
-                </div>
-                <div class="amad-field">
-                    <input type="text" id="targetPhone" class="input-box" placeholder="رقم الشخص المجهول لتوجيه البطاقة..." oninput="renderLivePreview()">
-                </div>
-                <div class="amad-field" style="grid-column: 1 / -1;">
-                    <textarea id="cardText" class="textarea-box" placeholder="اكتبي رسالتك وعبارتك هنا..." oninput="renderLivePreview()"></textarea>
+            <div class="palette-group">
+                <span class="palette-title">اختاري تدرج اللون المخصص:</span>
+                <div class="color-palette">
+                    <div class="color-node active" style="background: #d4b59d;" onclick="setThemeTone('#d4b59d', this)" title="كريمي دافئ"></div>
+                    <div class="color-node" style="background: #e2a8af;" onclick="setThemeTone('#e2a8af', this)" title="وردي لؤلؤي"></div>
+                    <div class="color-node" style="background: #a3b8b1;" onclick="setThemeTone('#a3b8b1', this)" title="أخضر مريمي"></div>
+                    <div class="color-node" style="background: #aab8c2;" onclick="setThemeTone('#aab8c2', this)" title="أزرق ضبابي"></div>
+                    <div class="color-node" style="background: #d6b8a0;" onclick="setThemeTone('#d6b8a0', this)" title="ذهبي رملي"></div>
                 </div>
             </div>
 
-            <!-- معاينة حية كأنها قطعة ورق فاخرة -->
-            <div id="livePreviewBox" class="preview-canvas" style="border-color: #d8b4fe;">
-                <div class="preview-title-tag">معاينة البطاقة الحية</div>
-                <div id="previewToDisplay" style="font-weight: 500; margin-bottom: 10px; color: #7c3aed;">إلى: المُهدى إليه</div>
-                <div id="previewTextDisplay" class="preview-body-text">"هنا تظهر الكلمات الناعمة بكل هدوء..."</div>
-                <div id="previewFromDisplay" style="font-size: 0.85rem; color: var(--text-muted);">— من: المُهدي</div>
+            <div class="grid-inputs">
+                <div class="field-container">
+                    <input type="text" id="cardTo" class="input-element" placeholder="إلى (اسم المُهدى إليه)..." oninput="updateLivePreview()">
+                </div>
+                <div class="field-container">
+                    <input type="text" id="recipientPhone" class="input-element" placeholder="رقم هاتف المُستلم للبطاقة..." oninput="updateLivePreview()">
+                </div>
+                <div class="field-container">
+                    <input type="text" id="cardFrom" class="input-element" placeholder="من (اسم المُهدي)..." oninput="updateLivePreview()">
+                </div>
+                <div class="field-container">
+                    <input type="text" id="targetPhone" class="input-element" placeholder="رقم الشخص المجهول لتوجيه البطاقة..." oninput="updateLivePreview()">
+                </div>
+                <div class="field-container" style="grid-column: 1 / -1;">
+                    <textarea id="cardText" class="textarea-element" placeholder="اكتبي عبارة الإهداء أو الرسالة هنا..." oninput="updateLivePreview()"></textarea>
+                </div>
             </div>
 
-            <button class="submit-btn" onclick="submitReadyCard()">اطلب البطاقة الجاهزة (500 فلس)</button>
+            <div id="livePreviewContainer" class="live-canvas" style="border-color: #d4b59d;">
+                <div class="canvas-label">معاينة المعرض الحية</div>
+                <div id="previewToText" style="font-weight: 500; margin-bottom: 12px; color: #d4b59d;">إلى: اسم المُهدى إليه</div>
+                <div id="previewBodyText" class="canvas-text">"هنا تظهر الكلمات الناعمة بكل هدوء وفخامة..."</div>
+                <div id="previewFromText" style="font-size: 0.85rem; color: var(--text-secondary);">— من: اسم المُهدي</div>
+            </div>
+
+            <button class="action-submit-btn" onclick="submitReadyCardOrder()">اطلب هذه البطاقة الجاهزة (500 فلس)</button>
         </div>
 
-        <!-- التصميم الخاص الحصري (بدينار) -->
-        <div class="custom-art-card">
-            <div class="card-heading">طلب التصميم الخاص الحصري</div>
-            <div class="card-explanation">هذا الخيار مخصص لمن يرغب في فكرة أو تصميم استثنائي فريد. صفِ ما تبحثين عنه، وسأقوم بتصميم البطاقة بالكامل خصيصاً لكِ وبإشرافي الفني الشخصي.</div>
-            <div class="price-tag">1.000 دينار بحريني</div>
-            <a href="https://wa.me/97336207720?text=مرحباً أَمَد ✦، أرغب في طلب تصميم خاص من إبداعك الشخصي حسب وصفي وتفاصيلي (بدينار واحد)" target="_blank" class="action-link-btn">اطلب تصميمي الخاص الحصري</a>
+        <!-- قسم التصميم الخاص الحصري (بدينار) -->
+        <div class="custom-art-box">
+            <div class="section-tag">التصميم الخاص الحصري</div>
+            <div class="studio-title">تصميم خاص من إبداعي الشخصي</div>
+            <div class="studio-desc">هذا القسم مخصص لمن يطلب عملاً فريداً ومبتكراً بالكامل. صفِ ما تحلمين به من فكرة أو تفاصيل دقيقة، وسأقوم بتصميم البطاقة خصيصاً لكِ وبإشرافي الفني المباشر.</div>
+            <div class="price-display">1.000 دينار بحريني</div>
+            <a href="https://wa.me/97336207720?text=مرحباً أَمَد ✦، أرغب في طلب تصميم خاص من إبداعك الشخصي حسب وصفي وتفاصيلي (بدينار واحد)" target="_blank" class="custom-order-btn">اطلب تصميمي الخاص الحصري</a>
         </div>
 
     </div>
@@ -340,32 +380,37 @@
     </footer>
 
     <script>
-        let selectedColor = '#d8b4fe';
-
-        function changePalette(color, element) {
-            selectedColor = color;
-            document.querySelectorAll('.palette-circle').forEach(c => c.classList.remove('selected'));
-            element.classList.add('selected');
-            document.getElementById('livePreviewBox').style.borderColor = color;
-            document.getElementById('previewToDisplay').style.color = color;
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
         }
 
-        function renderLivePreview() {
+        let activeTone = '#d4b59d';
+
+        function setThemeTone(color, element) {
+            activeTone = color;
+            document.querySelectorAll('.color-node').forEach(n => n.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('livePreviewContainer').style.borderColor = color;
+            document.getElementById('previewToText').style.color = color;
+        }
+
+        function updateLivePreview() {
             const to = document.getElementById('cardTo').value.trim();
             const from = document.getElementById('cardFrom').value.trim();
             const text = document.getElementById('cardText').value.trim();
             const phone = document.getElementById('recipientPhone').value.trim();
 
-            let toText = to ? "إلى: " + to : "إلى: المُهدى إليه";
-            if (phone) toText += ` (رقم: ${phone})`;
+            let toDisplay = to ? "إلى: " + to : "إلى: اسم المُهدى إليه";
+            if (phone) toDisplay += ` (رقم: ${phone})`;
 
-            document.getElementById('previewToDisplayinnerText' in document.getElementById('previewToDisplay') ? 'innerText' : 'textContent') = toText;
-            document.getElementById('previewToDisplay').innerText = toText;
-            document.getElementById('previewFromDisplay').innerText = from ? "— من: " + from : "— من: المُهدي";
-            document.getElementById('previewTextDisplay').innerText = text ? `"${text}"` : `"هنا تظهر الكلمات الناعمة بكل هدوء..."`;
+            document.getElementById('previewToText').innerText = toDisplay;
+            document.getElementById('previewFromText').innerText = from ? "— من: " + from : "— من: اسم المُهدي";
+            document.getElementById('previewBodyText').innerText = text ? `"${text}"` : `"هنا تظهر الكلمات الناعمة بكل هدوء وفخامة..."`;
         }
 
-        function submitReadyCard() {
+        function submitReadyCardOrder() {
             const to = document.getElementById('cardTo').value.trim();
             const phone = document.getElementById('recipientPhone').value.trim();
             const targetPhone = document.getElementById('targetPhone').value.trim();
@@ -377,8 +422,8 @@
                 return;
             }
 
-            let message = `مرحباً أَمَد ✦، أرغب في طلب البطاقة الجاهزة (500 فلس):\n\nإلى: ${to || 'غير محدد'}\nرقم المُستلم: ${phone || 'غير مضاف'}\nرقم الشخص المستهدف لتوجيه البطاقة: ${targetPhone || 'غير مضاف'}\nالرسالة: "${text}"\nمن: ${from || 'غير محدد'}\nاللون المختار: ${selectedColor}`;
-            window.open("https://wa.me/97336207720?text=" + encodeURIComponent(message), "_blank");
+            let msg = `مرحباً أَمَد ✦، أرغب في طلب البطاقة الجاهزة (500 فلس):\n\nإلى: ${to || 'غير محدد'}\nرقم المُستلم: ${phone || 'غير مضاف'}\nرقم الشخص المستهدف لتوجيه البطاقة: ${targetPhone || 'غير مضاف'}\nالرسالة: "${text}"\nمن: ${from || 'غير مضاف'}\nاللون المختار: ${activeTone}`;
+            window.open("https://wa.me/97336207720?text=" + encodeURIComponent(msg), "_blank");
         }
     </script>
 
