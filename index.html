@@ -124,7 +124,7 @@ footer{text-align:center;color:var(--soft);font-size:12px;margin-top:40px;line-h
 const $=id=>document.getElementById(id);
 const K='amad_msgs';
 /* ===== ربط السيرفر (Supabase): الصقي هنا رابط المشروع والمفتاح العام anon ===== */
-const SB_URL='https://syyboitismyrwtpluhln.supabase.co',SB_KEY='';
+const SB_URL='https://syyboitismyrwtpluhln.supabase.co',SB_KEY='sb_publishable_nLIDtjJVR8fAInmEonOEdQ_99sdKr9u';
 function remote(m){
   if(!SB_URL||!SB_KEY)return;
   fetch(SB_URL+'/rest/v1/messages',{method:'POST',headers:Object.assign({apikey:SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},SB_KEY.startsWith('eyJ')?{Authorization:'Bearer '+SB_KEY}:{}),
