@@ -1,471 +1,53 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أَمَد ✦ عالم المشاعر الحية</title>
-    <style>
-        :root {
-            --bg-1: #fff0f5;
-            --bg-2: #f4f5f8;
-            --surface: rgba(255, 255, 255, 0.88);
-            --text-main: #2b262d;
-            --text-sub: #78717d;
-            --accent: #d85a8c;
-            --accent-glow: rgba(216, 90, 140, 0.3);
-            --border-line: rgba(216, 90, 140, 0.2);
-        }
-
-        [data-theme="lavender"] {
-            --bg-1: #f4f2ff; --bg-2: #eae6ff; --accent: #7c5cb4; --accent-glow: rgba(124, 92, 180, 0.3); --border-line: rgba(124, 92, 180, 0.2);
-        }
-        [data-theme="mint"] {
-            --bg-1: #edfbf5; --bg-2: #d9f3ea; --accent: #359672; --accent-glow: rgba(53, 150, 114, 0.3); --border-line: rgba(53, 150, 114, 0.2);
-        }
-        [data-theme="sunset"] {
-            --bg-1: #fff7ee; --bg-2: #fae5d3; --accent: #d97736; --accent-glow: rgba(217, 119, 54, 0.3); --border-line: rgba(217, 119, 54, 0.2);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            direction: rtl;
-            text-align: right;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px 20px;
-            overflow-x: hidden;
-            position: relative;
-            transition: background 0.6s ease;
-        }
-
-        /* سماء النجوم المتحركة الحية */
-        .stars-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .star-particle {
-            position: absolute;
-            background: #ffffff;
-            border-radius: 50%;
-            animation: pulseStar 3s infinite ease-in-out, floatParticle 8s infinite linear;
-            box-shadow: 0 0 15px var(--accent);
-        }
-
-        @keyframes pulseStar {
-            0%, 100% { transform: scale(0.4); opacity: 0.2; }
-            50% { transform: scale(1.8); opacity: 1; }
-        }
-
-        @keyframes floatParticle {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-35px) rotate(180deg); }
-            100% { transform: translateY(0px) rotate(360deg); }
-        }
-
-        .floating-dock, header, .master-container, footer {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* شريط تغيير الألوان الحية والساحرة */
-        .floating-dock {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            background: var(--surface);
-            padding: 12px 28px;
-            border-radius: 50px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-            backdrop-filter: blur(25px);
-            margin-bottom: 35px;
-            border: 1px solid var(--border-line);
-        }
-
-        .mood-orb {
-            width: 30px; height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .mood-orb:hover { transform: scale(1.35) rotate(15deg); }
-
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        h1 {
-            font-size: 5rem;
-            color: var(--accent);
-            letter-spacing: 10px;
-            margin-bottom: 12px;
-            font-weight: 300;
-            text-shadow: 0 0 40px var(--accent-glow);
-        }
-
-        p.brand-sub {
-            color: var(--text-sub);
-            font-size: 1.2rem;
-            letter-spacing: 4px;
-        }
-
-        .master-container {
-            max-width: 950px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-        }
-
-        /* تصميم البطاقات العضوية الناعمة والفاخرة */
-        .artisan-card {
-            background: var(--surface);
-            border: 1px solid var(--border-line);
-            border-radius: 40px;
-            padding: 50px;
-            backdrop-filter: blur(30px);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .artisan-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 35px 80px var(--accent-glow);
-        }
-
-        .artisan-card::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; width: 8px; height: 100%;
-            background: var(--accent);
-            border-top-right-radius: 40px;
-            border-bottom-right-radius: 40px;
-        }
-
-        .card-top-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .card-heading {
-            font-size: 2.2rem;
-            color: var(--text-main);
-            font-weight: 400;
-        }
-
-        .badge-pill {
-            background: var(--accent-glow);
-            color: var(--accent);
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            border: 1px solid var(--border-line);
-        }
-
-        .card-explanation {
-            font-size: 1.05rem;
-            color: var(--text-sub);
-            margin-bottom: 35px;
-            line-height: 2;
-        }
-
-        .inputs-flex {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 22px;
-            margin-bottom: 25px;
-        }
-
-        @media(max-width: 768px) {
-            .inputs-flex { grid-template-columns: 1fr; }
-        }
-
-        .organic-box {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.75);
-            border: 2px solid var(--border-line);
-            border-radius: 22px;
-            padding: 18px 22px;
-            color: var(--text-main);
-            font-size: 1.05rem;
-            outline: none;
-            transition: all 0.4s ease;
-        }
-
-        .organic-area {
-            grid-column: 1 / -1;
-            height: 140px;
-            resize: none;
-        }
-
-        .organic-box:focus {
-            border-color: var(--accent);
-            background: #ffffff;
-            box-shadow: 0 0 25px var(--accent-glow);
-            transform: scale(1.01);
-        }
-
-        /* نافذة المعاينة السحرية */
-        .live-stage-preview {
-            background: radial-gradient(circle at center, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 100%);
-            border: 2px dashed var(--accent);
-            border-radius: 30px;
-            padding: 40px;
-            text-align: center;
-            margin: 30px 0;
-            position: relative;
-            box-shadow: inset 0 0 30px rgba(255,255,255,0.8);
-        }
-
-        .stage-tag-mini {
-            position: absolute;
-            top: -14px; right: 35px;
-            background: var(--accent);
-            color: #ffffff;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            padding: 5px 16px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .stage-live-text {
-            font-size: 1.5rem;
-            line-height: 2.2;
-            color: var(--text-main);
-            margin-bottom: 15px;
-            font-style: italic;
-            font-weight: 300;
-        }
-
-        .action-crystal-btn {
-            background: var(--accent);
-            color: #ffffff;
-            padding: 20px;
-            border-radius: 25px;
-            font-weight: 500;
-            font-size: 1.15rem;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            letter-spacing: 1.5px;
-            box-shadow: 0 12px 35px var(--accent-glow);
-            transition: all 0.4s ease;
-        }
-
-        .action-crystal-btn:hover {
-            transform: translateY(-4px);
-            opacity: 0.95;
-            box-shadow: 0 18px 45px var(--accent-glow);
-        }
-
-        footer {
-            margin-top: 70px;
-            color: var(--text-sub);
-            font-size: 0.95rem;
-            letter-spacing: 3px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body data-theme="rose">
-
-    <div class="stars-canvas" id="starsCanvas"></div>
-
-    <!-- شريط تباين الألوان والمزاج -->
-    <div class="floating-dock">
-        <span style="font-size: 0.9rem; color: var(--text-sub);">تغيير طابع الألوان:</span>
-        <div class="mood-orb" style="background: #d85a8c;" onclick="setTheme('rose')" title="وردي حالم"></div>
-        <div class="mood-orb" style="background: #7c5cb4;" onclick="setTheme('lavender')" title="لافندر سحري"></div>
-        <div class="mood-orb" style="background: #359672;" onclick="setTheme('mint')" title="نعناع منعش"></div>
-        <div class="mood-orb" style="background: #d97736;" onclick="setTheme('sunset')" title="غروب دافئ"></div>
-    </div>
-
-    <header>
-        <h1>أَمَد ✦</h1>
-        <p class="brand-sub">معرض المشاعر الحية والبطاقات الفاخرة</p>
-    </header>
-
-    <div class="master-container">
-        
-        <!-- القسم الأول: مساحة الإهداء الفوري الحر (مجاني) -->
-        <div class="artisan-card">
-            <div class="card-top-info">
-                <div class="card-heading">سكون الكلمات العائمة</div>
-                <div class="badge-pill">إهداء فوري مجاني ✦</div>
-            </div>
-            <div class="card-explanation">اكتب رسالتك النقية بكل حرية، وشاهدها تتجسد فوراً أمامك كقطعة فنية ناطقة بالمشاعر الصادقة.</div>
-            
-            <div class="inputs-flex">
-                <input type="text" id="freeTo" class="organic-box" placeholder="إلى (اسم المُهدى إليه)..." oninput="liveUpdateFree()">
-                <input type="text" id="freeFrom" class="organic-box" placeholder="من (اسم المُهدي)..." oninput="liveUpdateFree()">
-                <textarea id="freeText" class="organic-box organic-area" placeholder="اكتب نبض مشاعرك هنا..." oninput="liveUpdateFree()"></textarea>
-            </div>
-
-            <div class="live-stage-preview">
-                <div class="stage-tag-mini">معاينة حية</div>
-                <div id="previewFreeTo" style="font-weight: 500; font-size: 1.15rem; margin-bottom: 12px; color: var(--accent);">إلى: المُهدى إليه</div>
-                <div id="previewFreeBody" class="stage-live-text">"هنا تتنفس الكلمات بهدوء وسحر..."</div>
-                <div id="previewFreeFrom" style="font-size: 0.9rem; color: var(--text-sub);">— من: المُهدي</div>
-            </div>
-
-            <button class="action-crystal-btn" onclick="sendFreeWish()">أرسل هذا الإهداء الفوري الآن 💬</button>
-        </div>
-
-        <!-- القسم الثاني: البطاقات الثابتة الجاهزة (500 فلس) -->
-        <div class="artisan-card">
-            <div class="card-top-info">
-                <div class="card-heading">روائع البطاقات الثابتة</div>
-                <div class="badge-pill">500 فلس ✦</div>
-            </div>
-            <div class="card-explanation">تصاميم موقعنا الفاخرة والثابتة. اختر رسالتك، أدخل رقم المُستلم، واترك بقية السحر ليصل بكل رقي.</div>
-            
-            <div class="inputs-flex">
-                <input type="text" id="cardTo" class="organic-box" placeholder="إلى (اسم المُهدى إليه)..." oninput="liveUpdateCard()">
-                <input type="text" id="recipientPhone" class="organic-box" placeholder="رقم هاتف المُستلم..." oninput="liveUpdateCard()">
-                <input type="text" id="cardFrom" class="organic-box" placeholder="من (اسم المُهدي)..." oninput="liveUpdateCard()">
-                <textarea id="cardText" class="organic-box organic-area" placeholder="اكتب نص البطاقة الفاخرة..." oninput="liveUpdateCard()"></textarea>
-            </div>
-
-            <div class="live-stage-preview">
-                <div class="stage-tag-mini">معاينة البطاقة</div>
-                <div id="previewCardTo" style="font-weight: 500; font-size: 1.15rem; margin-bottom: 12px; color: var(--accent);">إلى: المُهدى إليه</div>
-                <div id="previewCardBody" class="stage-live-text">"كلمات البطاقة الثابتة الأنيقة..."</div>
-                <div id="previewCardFrom" style="font-size: 0.9rem; color: var(--text-sub);">— من: المُهدي</div>
-            </div>
-
-            <button class="action-crystal-btn" onclick="sendReadyCard()">طلب وإرسال البطاقة الفاخرة</button>
-        </div>
-
-        <!-- القسم الثالث: تصميم أَمَد الخاص الحصري (1.500 دينار - حتى يرضى تماماً) -->
-        <div class="artisan-card">
-            <div class="card-top-info">
-                <div class="card-heading">مرسم أَمَد الخاص الحصري</div>
-                <div class="badge-pill">1.500 دينار بحريني ✦</div>
-            </div>
-            <div class="card-explanation">مساحة خيالية مخصصة لمن يبحث عن التفرد المطلق. صِف لي ذوقك، ألوانك، وفكرتك بالكامل، وسأصمم البطاقة خصيصاً لك، ونعدل عليها معاً <b>حتى ترضى تماماً عن النتيجة النهائية</b>.</div>
-            
-            <div class="inputs-flex">
-                <input type="text" id="customName" class="organic-box" placeholder="اسمك الكريم..." style="grid-column: 1 / -1;">
-                <textarea id="customVision" class="organic-box organic-area" placeholder="صِف ذوقك، أفكارك، ورؤيتك الخيالية لنرسمها معاً..."></textarea>
-            </div>
-
-            <button class="action-crystal-btn" onclick="sendCustomOrder()">ادخل مرسم التصميم الخاص (واتساب) ✦</button>
-        </div>
-
-    </div>
-
-    <footer>
-        جميع الحقوق محفوظة لموقع أَمَد الفاخر &copy; 2026
-    </footer>
-
-    <script>
-        // سماء النجوم المتحركة الحية
-        const canvas = document.getElementById('starsCanvas');
-        for (let i = 0; i < 65; i++) {
-            const p = document.createElement('div');
-            p.classList.add('star-particle');
-            const size = Math.random() * 4 + 2;
-            p.style.width = `${size}px`;
-            p.style.height = `${size}px`;
-            p.style.top = `${Math.random() * 100}%`;
-            p.style.left = `${Math.random() * 100}%`;
-            p.style.animationDelay = `${Math.random() * 3}s`;
-            p.style.animationDuration = `${Math.random() * 4 + 3}s`;
-            canvas.appendChild(p);
-        }
-
-        function setTheme(themeName) {
-            document.body.setAttribute('data-theme', themeName);
-        }
-
-        function liveUpdateFree() {
-            const to = document.getElementById('freeTo').value.trim();
-            const from = document.getElementById('freeFrom').value.trim();
-            const text = document.getElementById('freeText').value.trim();
-
-            document.getElementById('previewFreeTo').innerText = to ? "إلى: " + to : "إلى: المُهدى إليه";
-            document.getElementById('previewFreeFrom').innerText = from ? "— من: " + from : "— من: المُهدي";
-            document.getElementById('previewFreeBody').innerText = text ? `"${text}"` : `"هنا تتنفس الكلمات بهدوء وسحر..."`;
-        }
-
-        function liveUpdateCard() {
-            const to = document.getElementById('cardTo').value.trim();
-            const from = document.getElementById('cardFrom').value.trim();
-            const text = document.getElementById('cardText').value.trim();
-
-            document.getElementById('previewCardTo').innerText = to ? "إلى: " + to : "إلى: المُهدى إليه";
-            document.getElementById('previewCardFrom').innerText = from ? "— من: " + from : "— من: المُهدي";
-            document.getElementById('previewCardBody').innerText = text ? `"${text}"` : `"كلمات البطاقة الثابتة الأنيقة..."`;
-        }
-
-        function sendFreeWish() {
-            const to = document.getElementById('freeTo').value.trim();
-            const from = document.getElementById('freeFrom').value.trim();
-            const text = document.getElementById('freeText').value.trim();
-
-            if (!text) {
-                alert('الرجاء كتابة نبض مشاعرك أولاً!');
-                return;
-            }
-
-            let msg = `✦ إهداء حر عبر أَمَد:\n\nإلى: ${to || 'غير محدد'}\nالرسالة: "${text}"\nمن: ${from || 'غير محدد'}`;
-            window.open("https://wa.me/97336207720?text=" + encodeURIComponent(msg), "_blank");
-        }
-
-        function sendReadyCard() {
-            const to = document.getElementById('cardTo').value.trim();
-            const phone = document.getElementById('recipientPhone').value.trim();
-            const from = document.getElementById('cardFrom').value.trim();
-            const text = document.getElementById('cardText').value.trim();
-
-            if (!text) {
-                alert('الرجاء كتابة نص البطاقة أولاً!');
-                return;
-            }
-
-            let msg = `✦ طلب بطاقة فاخرة (500 فلس):\n\nإلى: ${to || 'غير محدد'}\nرقم المُستلم: ${phone || 'غير مضاف'}\nالرسالة: "${text}"\nمن: ${from || 'غير محدد'}`;
-            window.open("https://wa.me/97336207720?text=" + encodeURIComponent(msg), "_blank");
-        }
-
-        function sendCustomOrder() {
-            const name = document.getElementById('customName').value.trim();
-            const vision = document.getElementById('customVision').value.trim();
-
-            if (!vision) {
-                alert('الرجاء وصف رؤيتك الفنية لنبدأ سحر التصميم!');
-                return;
-            }
-
-            let msg = `✦ طلب من مرسم أَمَد الخاص (1.5 دينار):\n\nالاسم: ${name || 'غير محدد'}\nالرؤية والتفاصيل:\n${vision}`;
-            window.open("https://wa.me/97336207720?text=" + encodeURIComponent(msg), "_blank");
-        }
-    </script>
-
-</body>
-</html>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أَمَدْ — رسائل تنتظر نجمتها</title>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Readex+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --a:#f6d6e4;--b:#d6e6f6;--c:#e0d6f6;--gold:#e9c46a;
+  --base:#fffdfb;--ink:#4a4458;--soft:#7d7690;--card:rgba(255,255,255,.72);--line:rgba(120,110,150,.18);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--base:#1f1c29;--ink:#f1ecf8;--soft:#b9b0cc;--card:rgba(40,36,54,.72);--line:rgba(255,255,255,.14)}}
+:root[data-theme="dark"]{--base:#1f1c29;--ink:#f1ecf8;--soft:#b9b0cc;--card:rgba(40,36,54,.72);--line:rgba(255,255,255,.14)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:'Readex Pro',Tahoma,sans-serif;color:var(--ink);
+  background:linear-gradient(160deg,color-mix(in srgb,var(--a) 55%,var(--base)),color-mix(in srgb,var(--b) 55%,var(--base)) 55%,color-mix(in srgb,var(--c) 55%,var(--base)));
+  background-attachment:fixed;transition:background 3s}
+.wrap{max-width:560px;margin:0 auto;padding:22px 18px 60px}
+header{text-align:center;padding:28px 0 10px}
+.star{width:92px;height:92px;display:block;margin:0 auto 6px;animation:spin 40s linear infinite}
+.star path{fill:var(--gold);stroke:#fff;stroke-width:1.5;stroke-linejoin:round}
+@keyframes spin{to{transform:rotate(360deg)}}
+h1{font-family:'Aref Ruqaa',serif;font-size:56px;margin:0;line-height:1.2}
+.tag{color:var(--soft);font-weight:300;margin:4px 0 0}
+.mode{display:flex;gap:8px;margin:22px 0 14px;background:var(--card);padding:6px;border-radius:999px;border:1px solid var(--line)}
+.mode button{flex:1;border:0;background:none;padding:11px 8px;border-radius:999px;font:inherit;color:var(--soft);cursor:pointer}
+.mode button[aria-pressed=true]{background:color-mix(in srgb,var(--a) 80%,var(--base));color:var(--ink);font-weight:600}
+.panel{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:26px;padding:20px}
+label{display:block;font-size:14px;color:var(--soft);margin:14px 0 6px}
+textarea,input{width:100%;font:inherit;color:var(--ink);background:color-mix(in srgb,var(--base) 70%,transparent);border:1px solid var(--line);border-radius:16px;padding:12px}
+textarea{min-height:120px;resize:vertical}
+.plans{display:grid;grid-template-columns:1fr;gap:10px;margin-top:6px}
+.plan{border:1.5px solid var(--line);border-radius:18px;padding:12px;cursor:pointer;background:none;font:inherit;color:var(--ink);text-align:right}
+.plan b{display:block}.plan small{color:var(--soft);font-size:12px;line-height:1.6;display:block;margin-top:4px}
+.plan[aria-pressed=true]{border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 30%,transparent)}
+.go{width:100%;margin-top:18px;border:0;border-radius:999px;padding:15px;font:inherit;font-weight:600;font-size:16px;color:#4a4458;cursor:pointer;background:linear-gradient(90deg,var(--a),var(--b),var(--c))}
+.go:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h2{font-size:18px;margin:34px 0 12px;font-weight:600}
+.msg{border-radius:22px;padding:16px;margin-bottom:12px;border:1px solid var(--line);background:var(--card)}
+.msg.vip{border:1.5px solid var(--gold);background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 22%,var(--card)),var(--card))}
+.meta{font-size:12px;color:var(--soft);display:flex;justify-content:space-between;gap:8px}
+.body{margin:10px 0 0;white-space:pre-wrap;line-height:1.9}
+.lock{color:var(--soft);margin:10px 0 0}
+.open{margin-top:10px;border:0;border-radius:999px;padding:8px 16px;font:inherit;background:var(--gold);color:#4a4458;cursor:pointer}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.ghost{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:10px 16px;font:inherit;cursor:pointer}
+.stranger{margin-top:12px;font-weight:300;line-height:1.9;min-height:3em}
+.toast{position:fixed;inset:auto 0 calc(24px + env(safe-area-inset-bottom,0px));margin:auto;width:max-content;max-width:88%;background:var(--ink);color:var(--base);padding:12px 20px;border-radius:999px;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+footer{text-align:center;color:var(--soft);font-size:12px;margin
