@@ -8,12 +8,12 @@
         :root {
             --bg-1: #fef6fb;
             --bg-2: #f2f6ff;
-            --surface: rgba(255, 255, 255, 0.85);
+            --surface: rgba(255, 255, 255, 0.88);
             --text-main: #2d2a32;
             --text-sub: #7a7585;
             --accent: #e06d9b;
             --border-glow: rgba(224, 109, 155, 0.25);
-            --input-bg: rgba(255, 255, 255, 0.9);
+            --input-bg: rgba(255, 255, 255, 0.95);
         }
 
         [data-theme="lavender"] {
@@ -33,13 +33,11 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             direction: rtl;
             text-align: right;
-            transition: all 0.5s ease;
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
         body {
             background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
-            background-size: 400% 400%;
-            animation: gradientShift 18s ease infinite;
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -50,46 +48,38 @@
             position: relative;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* سماء النجوم المتلألئة الحية في الخلفية */
-        .cosmos-sky {
+        /* طبقة النجوم المتلألئة المضمونة */
+        .stars-sky {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 1;
+            overflow: hidden;
         }
 
-        .star {
+        .sparkle-star {
             position: absolute;
             background: #ffffff;
             border-radius: 50%;
-            animation: starPulse 3.5s infinite ease-in-out, starFloat 8s infinite linear;
-            opacity: 0.8;
+            animation: sparkleAnim 3s infinite ease-in-out;
+            box-shadow: 0 0 8px var(--accent);
         }
 
-        @keyframes starPulse {
-            0%, 100% { transform: scale(1); opacity: 0.2; }
-            50% { transform: scale(1.6); opacity: 1; box-shadow: 0 0 12px var(--accent); }
+        @keyframes sparkleAnim {
+            0%, 100% { transform: scale(0.5); opacity: 0.2; }
+            50% { transform: scale(1.4); opacity: 1; }
         }
 
-        @keyframes starFloat {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-            100% { transform: translateY(0px) rotate(360deg); }
-        }
-
-        /* محتوى الموقع يظهر فوق النجوم */
+        /* محتوى الموقع فوق النجوم */
         .magic-controls, header, .container, footer {
             position: relative;
             z-index: 2;
         }
 
-        /* شريط تغيير الألوان السحري للزبون */
+        /* شريط تغيير الألوان السحري */
         .magic-controls {
             display: flex;
             align-items: center;
@@ -110,7 +100,7 @@
             border: 2px solid #fff;
             box-shadow: 0 3px 8px rgba(0,0,0,0.1);
         }
-        .theme-orb:hover { transform: scale(1.25) rotate(15deg); }
+        .theme-orb:hover { transform: scale(1.25); }
 
         header {
             text-align: center;
@@ -123,7 +113,6 @@
             letter-spacing: 6px;
             margin-bottom: 12px;
             font-weight: 300;
-            text-shadow: 0 0 30px var(--border-glow);
         }
 
         p.subtitle {
@@ -247,8 +236,8 @@
         }
 
         .magic-btn:hover {
-            transform: translateY(-3px);
             opacity: 0.92;
+            transform: translateY(-2px);
         }
 
         .price-pill {
@@ -273,8 +262,8 @@
 </head>
 <body data-theme="rose">
 
-    <!-- خلفية النجوم السحرية المتلألئة -->
-    <div class="cosmos-sky" id="cosmosSky"></div>
+    <!-- طبقة النجوم المتلألئة -->
+    <div class="stars-sky" id="starsSky"></div>
 
     <!-- شريط سحري لتغيير ألوان الموقع حسب رغبة الزبون -->
     <div class="magic-controls">
@@ -359,19 +348,19 @@
     </footer>
 
     <script>
-        // خلق سماء النجوم المتلألئة المتحركة في الخلفية تلقائياً
-        const cosmos = document.getElementById('cosmosSky');
-        for (let i = 0; i < 45; i++) {
+        // توليد النجوم المتلألئة المضمونة برمجياً
+        const sky = document.getElementById('starsSky');
+        for (let i = 0; i < 50; i++) {
             const star = document.createElement('div');
-            star.classList.add('star');
-            const size = Math.random() * 3.5 + 1;
+            star.classList.add('sparkle-star');
+            const size = Math.random() * 4 + 2;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             star.style.top = `${Math.random() * 100}%`;
             star.style.left = `${Math.random() * 100}%`;
             star.style.animationDelay = `${Math.random() * 3}s`;
-            star.style.animationDuration = `${Math.random() * 5 + 3}s`;
-            cosmos.appendChild(star);
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            sky.appendChild(star);
         }
 
         function setSiteTheme(themeName) {
