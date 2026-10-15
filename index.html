@@ -1,93 +1,166 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أَمَد | مساحتك الهادئة للبطاقات الرقمية</title>
     <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #f8fafc;
+            --subtitle-color: #94a3b8;
+            --accent-color: #d4af37;
+            --border-color: rgba(212, 175, 55, 0.3);
+            --btn-text: #0f172a;
+        }
+
+        [data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text-color: #1e293b;
+            --subtitle-color: #64748b;
+            --accent-color: #b8860b;
+            --border-color: rgba(184, 134, 11, 0.3);
+            --btn-text: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
         }
+
         body {
-            background: linear-gradient(135deg, #0f172a, #1e1b4b);
-            color: #f8fafc;
+            background: var(--bg-gradient);
+            color: var(--text-color);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
         }
+
+        .top-bar {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
         header {
             text-align: center;
-            margin: 40px 0 20px;
+            margin: 20px 0 30px;
         }
+
         h1 {
             font-size: 3rem;
-            color: #d4af37;
+            color: var(--accent-color);
             margin-bottom: 10px;
             letter-spacing: 2px;
         }
+
         p.subtitle {
-            color: #94a3b8;
+            color: var(--subtitle-color);
             font-size: 1.1rem;
         }
+
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            margin-top: 20px;
         }
+
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
             margin-bottom: 40px;
         }
+
         .digital-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px;
-            padding: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px 20px;
             text-align: center;
             backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
+
         .digital-card:hover {
-            transform: translateY(-5px);
-            border-color: #d4af37;
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
         }
+
+        .card-pink { border-top: 4px solid #ec4899; }
+        .card-gold { border-top: 4px solid #d4af37; }
+        .card-blue { border-top: 4px solid #3b82f6; }
+        .card-purple { border-top: 4px solid #8b5cf6; }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
         .card-title {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            font-weight: 600;
         }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--subtitle-color);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
         .card-price {
-            font-size: 1.5rem;
-            color: #d4af37;
+            font-size: 1.4rem;
+            color: var(--accent-color);
             font-weight: bold;
             margin-bottom: 20px;
         }
+
         .benefit-btn {
             display: inline-block;
-            background: #d4af37;
-            color: #0f172a;
+            background: var(--accent-color);
+            color: var(--btn-text);
             padding: 12px 25px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1rem;
-            transition: background 0.3s ease, transform 0.2s ease;
+            font-size: 0.95rem;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: transform 0.2s ease, opacity 0.2s ease;
         }
+
         .benefit-btn:hover {
-            background: #e6c55c;
             transform: scale(1.05);
+            opacity: 0.9;
         }
+
         footer {
             margin-top: auto;
-            color: #64748b;
+            color: var(--subtitle-color);
             font-size: 0.9rem;
             padding: 20px 0;
             text-align: center;
@@ -96,6 +169,10 @@
 </head>
 <body>
 
+    <div class="top-bar">
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 تبديل المظهر</button>
+    </div>
+
     <header>
         <h1>أَمَد</h1>
         <p class="subtitle">مساحتك الهادئة للبطاقات الرقمية المميزة</p>
@@ -103,17 +180,34 @@
 
     <div class="container">
         <div class="card-grid">
-            <!-- البطاقة الأولى -->
-            <div class="digital-card">
-                <div class="card-title">بطاقة شكر وتقدير</div>
+            <div class="digital-card card-pink">
+                <div class="card-icon">🌸</div>
+                <div class="card-title">بطاقة تهنئة وردية</div>
+                <div class="card-desc">تصميم رقيق وهادئ للمناسبات السعيدة وأعياد الميلاد.</div>
                 <div class="card-price">500 فلس</div>
-                <!-- رابط بنفت باي (يمكنك استبدال الرقم برقم الهاتف الخاص بالتحويل أو رابط بنفت المباشر) -->
                 <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
             </div>
 
-            <!-- البطاقة الثانية -->
-            <div class="digital-card">
-                <div class="card-title">بطاقة تهنئة خاصة</div>
+            <div class="digital-card card-gold">
+                <div class="card-icon">✨</div>
+                <div class="card-title">بطاقة شكر وتقدير</div>
+                <div class="card-desc">لمسة فخمة تعبر عن الامتنان بأسلوب راقي.</div>
+                <div class="card-price">500 فلس</div>
+                <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
+            </div>
+
+            <div class="digital-card card-blue">
+                <div class="card-icon">🌊</div>
+                <div class="card-title">بطاقة أماني هادئة</div>
+                <div class="card-desc">عبارات ملهمة ومريحة للقلب بستايل عميق.</div>
+                <div class="card-price">500 فلس</div>
+                <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
+            </div>
+
+            <div class="digital-card card-purple">
+                <div class="card-icon">🔮</div>
+                <div class="card-title">بطاقة مخصصة حسب طلبك</div>
+                <div class="card-desc">اكتبي العبارة التي ترغبين بها وسنصممها خصيصاً لك.</div>
                 <div class="card-price">500 فلس</div>
                 <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
             </div>
@@ -123,6 +217,18 @@
     <footer>
         جميع الحقوق محفوظة لموقع أَمَد &copy; 2026
     </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+            }
+        }
+    </script>
 
 </body>
 </html>
