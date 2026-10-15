@@ -3,504 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أَمَد | سماء الأماني والرسائل الزمنية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>أَمَد | مساحتك الهادئة للبطاقات الرقمية</title>
     <style>
-        :root {
-            --bg-color: #0f141c;
-            --card-bg: rgba(25, 32, 45, 0.85);
-            --text-main: #f3efe6;
-            --text-light: #b0a89f;
-            --accent-color: #f4d06f;
-            --accent-hover: #e0bc50;
-            --border-color: rgba(244, 208, 111, 0.2);
-            --input-bg: rgba(15, 20, 28, 0.6);
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Tajawal', sans-serif, Arial;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            color: #f8fafc;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             align-items: center;
             padding: 20px;
-            transition: background-color 0.5s ease;
-            position: relative;
-            overflow-x: hidden;
         }
-
-        .sky-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .star-node {
-            position: absolute;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            cursor: pointer;
-            pointer-events: auto;
-            animation: pulseGlow 3s infinite alternate;
-            box-shadow: 0 0 10px var(--accent-color);
-            transition: transform 0.3s;
-        }
-
-        .star-node:hover {
-            transform: scale(2);
-        }
-
-        @keyframes pulseGlow {
-            0% { opacity: 0.4; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .theme-switcher {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            gap: 8px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 8px 12px;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            z-index: 10;
-        }
-
-        .theme-btn {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .theme-btn:hover {
-            transform: scale(1.2);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 650px;
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            margin-top: 70px;
+        header {
             text-align: center;
-            transition: all 0.5s ease;
-            position: relative;
-            z-index: 2;
+            margin: 40px 0 20px;
         }
-
-        .logo-container {
-            display: inline-block;
-            position: relative;
-            margin-bottom: 8px;
-        }
-
-        header h1 {
+        h1 {
             font-size: 3rem;
-            color: var(--accent-color);
-            font-weight: 700;
-            letter-spacing: 4px;
-            line-height: 1.2;
+            color: #d4af37;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
         }
-
-        .logo-star {
-            position: absolute;
-            top: -5px;
-            right: 15px;
-            width: 12px;
-            height: 12px;
-            background-color: var(--accent-color);
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            animation: pulseGlow 2s infinite alternate;
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
         }
-
-        header p {
-            color: var(--text-light);
-            font-size: 1.05rem;
-            margin-bottom: 25px;
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin-top: 20px;
         }
-
-        /* تبديل الأقسام (إرسال رسالة مجانية vs البطاقات المميزة) */
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            background: rgba(15, 20, 28, 0.5);
-            padding: 5px;
-            border-radius: 14px;
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
         }
-
-        .tab-btn {
-            flex: 1;
-            padding: 10px;
-            background: transparent;
-            border: none;
-            color: var(--text-light);
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
+        .digital-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
-
-        .tab-btn.active {
-            background: var(--accent-color);
-            color: #0f141c;
+        .digital-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
         }
-
-        .section-content {
-            display: none;
-            text-align: right;
+        .card-title {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 10px;
         }
-
-        .section-content.active {
-            display: block;
-        }
-
-        .form-group {
+        .card-price {
+            font-size: 1.5rem;
+            color: #d4af37;
+            font-weight: bold;
             margin-bottom: 20px;
         }
-
-        label {
-            display: block;
-            font-size: 0.95rem;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        textarea, select, input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            background-color: var(--input-bg);
-            color: var(--text-main);
+        .benefit-btn {
+            display: inline-block;
+            background: #d4af37;
+            color: #0f172a;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
             font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        textarea:focus, select:focus, input:focus {
-            border-color: var(--accent-color);
-            background-color: rgba(25, 32, 45, 0.95);
-            box-shadow: 0 0 0 4px rgba(244, 208, 111, 0.15);
-        }
-
-        textarea {
-            resize: none;
-            height: 120px;
-        }
-
-        .btn {
-            background-color: var(--accent-color);
-            color: #0f141c;
-            border: none;
-            border-radius: 14px;
-            padding: 15px 24px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
             transition: background 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
-
-        .btn:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-1px);
+        .benefit-btn:hover {
+            background: #e6c55c;
+            transform: scale(1.05);
         }
-
-        /* بطاقات المتجر المميز بـ 500 فلس */
-        .shop-card {
-            background: rgba(15, 20, 28, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 15px;
-            text-align: right;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .shop-info h3 {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .shop-info p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .price-tag {
-            background: var(--accent-color);
-            color: #0f141c;
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            cursor: pointer;
-            border: none;
-            transition: 0.2s;
-        }
-
-        .price-tag:hover {
-            background: var(--accent-hover);
-        }
-
-        .success-message {
-            display: none;
-            margin-top: 20px;
-            padding: 25px;
-            background-color: rgba(20, 40, 30, 0.85);
-            color: #a3e4d7;
-            border-radius: 14px;
-            font-size: 1rem;
-            border: 1px solid rgba(163, 228, 215, 0.3);
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: #19202d;
-            border: 1px solid var(--accent-color);
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            background: none;
-            border: none;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
         footer {
-            margin: 30px 0 10px;
+            margin-top: auto;
+            color: #64748b;
             font-size: 0.9rem;
-            color: var(--text-light);
+            padding: 20px 0;
             text-align: center;
-            position: relative;
-            z-index: 2;
         }
     </style>
 </head>
 <body>
 
-    <div class="sky-canvas" id="skyCanvas"></div>
-
-    <div class="theme-switcher">
-        <button class="theme-btn" style="background-color: #f4d06f;" onclick="setTheme('#0f141c', '#f4d06f', '#e0bc50', 'rgba(244, 208, 111, 0.2)')" title="مجرة سماء الليل"></button>
-        <button class="theme-btn" style="background-color: #e2a0b0;" onclick="setTheme('#1a1216', '#e2a0b0', '#cf8596', 'rgba(226, 160, 176, 0.2)')" title="سماء الغسق الوردي"></button>
-        <button class="theme-btn" style="background-color: #93b5c6;" onclick="setTheme('#0d1b2a', '#93b5c6', '#7698a9', 'rgba(147, 181, 198, 0.2)')" title="سماء الفجر الهادئ"></button>
-    </div>
+    <header>
+        <h1>أَمَد</h1>
+        <p class="subtitle">مساحتك الهادئة للبطاقات الرقمية المميزة</p>
+    </header>
 
     <div class="container">
-        <header>
-            <div class="logo-container">
-                <h1>أَمَد</h1>
-                <div class="logo-star"></div>
-            </div>
-            <p>ملاذك الهادئ للرسائل والبطاقات الزمنية المصممة بعناية.</p>
-        </header>
-
-        <!-- أزرار التنقل بين إرسال رسالة والمجرى المميز -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('freeTab', this)">✨ سماء الأماني (مجاني)</button>
-            <button class="tab-btn" onclick="switchTab('shopTab', this)">🎁 بطاقات أَمَد (500 فلس)</button>
-        </div>
-
-        <main>
-            <!-- القسم الأول: إرسال الرسائل المجانية والنجوم -->
-            <div id="freeTab" class="section-content active">
-                <form id="timeCapsuleForm">
-                    <div class="form-group">
-                        <label for="recipientName">إلى من هذه الرسالة؟:</label>
-                        <input type="text" id="recipientName" placeholder="مثال: إلى نفسي المستقبلية، أو لصديقي..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="messageContent">محتوى الرسالة والأمنية:</label>
-                        <textarea id="messageContent" placeholder="اكتب ما يعتلج في صدرك.. لتتحول رسالتك إلى نجمة في السماء..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="openTime">وقت إطلاق النجمة في السماء:</label>
-                        <select id="openTime">
-                            <option value="now">إطلاق فوري في سماء أمد (الآن)</option>
-                            <option value="1">بعد سنة من الآن</option>
-                            <option value="3">بعد 3 سنوات</option>
-                            <option value="5">بعد 5 سنوات</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn">إطلاق النجمة في السماء ✨</button>
-                </form>
-
-                <div id="successBox" class="success-message">
-                    ✨ <strong>تحولت رسالتك إلى نجمة لامعة في سماء أمد!</strong><br>
-                    تم حفظ أثرك بنجاح بين النجوم العائمة.
-                </div>
+        <div class="card-grid">
+            <!-- البطاقة الأولى -->
+            <div class="digital-card">
+                <div class="card-title">بطاقة شكر وتقدير</div>
+                <div class="card-price">500 فلس</div>
+                <!-- رابط بنفت باي (يمكنك استبدال الرقم برقم الهاتف الخاص بالتحويل أو رابط بنفت المباشر) -->
+                <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
             </div>
 
-            <!-- القسم الثاني: البطاقات المميزة (500 فلس) -->
-            <div id="shopTab" class="section-content">
-                <div class="shop-card">
-                    <div class="shop-info">
-                        <h3>بطاقة الختم الشمعي الملكي</h3>
-                        <p>تصميم فاخر جداً مع ختم شمعي ذهبي مخصص لإرسالها لمن تحب.</p>
-                    </div>
-                    <button class="price-tag" onclick="orderCard('بطاقة الختم الشمعي الملكي')">0.500 د.ب</button>
-                </div>
-
-                <div class="shop-card">
-                    <div class="shop-info">
-                        <h3>نجمة أمد المحفورة للأبد</h3>
-                        <p>حجز نجمة خاصة تحمل اسمك ورسالتك الباستيلية في سماء أمد المضيئة.</p>
-                    </div>
-                    <button class="price-tag" onclick="orderCard('نجمة أمد المحفورة للأبد')">0.500 د.ب</button>
-                </div>
-
-                <div class="shop-card">
-                    <div class="shop-info">
-                        <h3>رسالة الغلاف العتيق (PDF فني)</h3>
-                        <p>تصميم ورقي عتيق جاهز للطباعة أو الإرسال الرقمي الفاخر.</p>
-                    </div>
-                    <button class="price-tag" onclick="orderCard('رسالة الغلاف العتيق (PDF)')">0.500 د.ب</button>
-                </div>
+            <!-- البطاقة الثانية -->
+            <div class="digital-card">
+                <div class="card-title">بطاقة تهنئة خاصة</div>
+                <div class="card-price">500 فلس</div>
+                <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
             </div>
-        </main>
-    </div>
-
-    <div class="modal" id="starModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">✕</button>
-            <h3 id="modalTitle" style="color: var(--accent-color); margin-bottom: 15px;"></h3>
-            <p id="modalText" style="line-height: 1.8; color: var(--text-main); font-size: 1.05rem;"></p>
         </div>
     </div>
 
     <footer>
-        ملاذك الرقمي الفضي الهادئ 🌌
+        جميع الحقوق محفوظة لموقع أَمَد &copy; 2026
     </footer>
 
-    <script>
-        const sampleMessages = [
-            { sender: "إلى غريب يبحث عن طمأنينة", text: "ستمر الأيام العسرة وتزهر الأماكن التي ظننت أنها لن تروى أبداً. اطمئن." },
-            { sender: "إلى نفسي بعد عامين", text: "أتمنى أنك وصلت للمكان الذي كنت تحارب من أجله وأنت تبتسم." },
-            { sender: "أثر طيب", text: "الكلمة الطيبة سراج يمشي في صدر صاحبه، دعه يضيء عتمتك اليوم." }
-        ];
-
-        const skyCanvas = document.getElementById('skyCanvas');
-        
-        for (let i = 0; i < 35; i++) {
-            createStarNode(
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerHeight,
-                sampleMessages[Math.floor(Math.random() * sampleMessages.length)]
-            );
-        }
-
-        function createStarNode(x, y, messageData) {
-            const star = document.createElement('div');
-            star.classList.add('star-node');
-            const size = (Math.random() * 4 + 3) + 'px';
-            star.style.width = size;
-            star.style.height = size;
-            star.style.left = x + 'px';
-            star.style.top = y + 'px';
-            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-
-            star.onclick = () => {
-                document.getElementById('modalTitle').innerText = messageData.sender;
-                document.getElementById('modalText').innerText = `"${messageData.text}"`;
-                document.getElementById('starModal').style.display = 'flex';
-            };
-
-            skyCanvas.appendChild(star);
-        }
-
-        function closeModal() {
-            document.getElementById('starModal').style.display = 'none';
-        }
-
-        function setTheme(bgColor, accentColor, accentHover, borderColor) {
-            document.documentElement.style.setProperty('--bg-color', bgColor);
-            document.documentElement.style.setProperty('--accent-color', accentColor);
-            document.documentElement.style.setProperty('--accent-hover', accentHover);
-            document.documentElement.style.setProperty('--border-color', borderColor);
-        }
-
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
-        }
-
-        document.getElementById('timeCapsuleForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const recipient = document.getElementById('recipientName').value;
-            const content = document.getElementById('messageContent').value;
-
-            createStarNode(
-                Math.random() * (window.innerWidth - 100) + 50,
-                Math.random() * (window.innerHeight - 100) + 50,
-                { sender: recipient, text: content }
-            );
-
-            document.getElementById('timeCapsuleForm').style.display = 'none';
-            document.getElementById('successBox').style.display = 'block';
-        });
-
-        function orderCard(cardName) {
-            const text = encodeURIComponent(`مرحباً، أرغب في طلب (${cardName}) بمبلغ 500 فلس من موقع أَمَد ✨`);
-            window.open(`https://api.whatsapp.com/send?phone=&text=${text}`, '_blank');
-        }
-    </script>
 </body>
 </html>
