@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أَمَد ✦ معرض المشاعر الحية</title>
+    <title>أَمَد ✦ عالم المشاعر الحية</title>
     <style>
         :root {
             --bg-1: #fff0f5;
             --bg-2: #f4f5f8;
-            --surface: rgba(255, 255, 255, 0.85);
+            --surface: rgba(255, 255, 255, 0.88);
             --text-main: #2b262d;
             --text-sub: #78717d;
             --accent: #d85a8c;
-            --accent-glow: rgba(216, 90, 140, 0.25);
+            --accent-glow: rgba(216, 90, 140, 0.3);
             --border-line: rgba(216, 90, 140, 0.2);
         }
 
         [data-theme="lavender"] {
-            --bg-1: #f4f2ff; --bg-2: #eae6ff; --accent: #7c5cb4; --accent-glow: rgba(124, 92, 180, 0.25); --border-line: rgba(124, 92, 180, 0.2);
+            --bg-1: #f4f2ff; --bg-2: #eae6ff; --accent: #7c5cb4; --accent-glow: rgba(124, 92, 180, 0.3); --border-line: rgba(124, 92, 180, 0.2);
         }
         [data-theme="mint"] {
-            --bg-1: #edfbf5; --bg-2: #d9f3ea; --accent: #359672; --accent-glow: rgba(53, 150, 114, 0.25); --border-line: rgba(53, 150, 114, 0.2);
+            --bg-1: #edfbf5; --bg-2: #d9f3ea; --accent: #359672; --accent-glow: rgba(53, 150, 114, 0.3); --border-line: rgba(53, 150, 114, 0.2);
         }
         [data-theme="sunset"] {
-            --bg-1: #fff7ee; --bg-2: #fae5d3; --accent: #d97736; --accent-glow: rgba(217, 119, 54, 0.25); --border-line: rgba(217, 119, 54, 0.2);
+            --bg-1: #fff7ee; --bg-2: #fae5d3; --accent: #d97736; --accent-glow: rgba(217, 119, 54, 0.3); --border-line: rgba(217, 119, 54, 0.2);
         }
 
         * {
@@ -48,7 +48,7 @@
             transition: background 0.6s ease;
         }
 
-        /* سماء النجوم المتحركة المتلألئة */
+        /* سماء النجوم المتحركة الحية */
         .stars-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -61,7 +61,7 @@
             background: #ffffff;
             border-radius: 50%;
             animation: pulseStar 3s infinite ease-in-out, floatParticle 8s infinite linear;
-            box-shadow: 0 0 12px var(--accent);
+            box-shadow: 0 0 15px var(--accent);
         }
 
         @keyframes pulseStar {
@@ -88,7 +88,7 @@
             background: var(--surface);
             padding: 12px 28px;
             border-radius: 50px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
             backdrop-filter: blur(25px);
             margin-bottom: 35px;
             border: 1px solid var(--border-line);
@@ -115,7 +115,7 @@
             letter-spacing: 10px;
             margin-bottom: 12px;
             font-weight: 300;
-            text-shadow: 0 0 35px var(--accent-glow);
+            text-shadow: 0 0 40px var(--accent-glow);
         }
 
         p.brand-sub {
@@ -205,7 +205,7 @@
 
         .organic-box {
             width: 100%;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.75);
             border: 2px solid var(--border-line);
             border-radius: 22px;
             padding: 18px 22px;
@@ -386,7 +386,7 @@
     <script>
         // سماء النجوم المتحركة الحية
         const canvas = document.getElementById('starsCanvas');
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 65; i++) {
             const p = document.createElement('div');
             p.classList.add('star-particle');
             const size = Math.random() * 4 + 2;
@@ -468,3 +468,4 @@
 
 </body>
 </html>
+
