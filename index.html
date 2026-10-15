@@ -16,12 +16,12 @@
         }
 
         [data-theme="light"] {
-            --bg-gradient: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text-color: #1e293b;
-            --subtitle-color: #64748b;
+            --bg-gradient: linear-gradient(135deg, #ffffff, #f1f5f9);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #0f172a;
+            --subtitle-color: #475569;
             --accent-color: #b8860b;
-            --border-color: rgba(184, 134, 11, 0.3);
+            --border-color: rgba(184, 134, 11, 0.25);
             --btn-text: #ffffff;
         }
 
@@ -45,7 +45,7 @@
 
         .top-bar {
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -79,13 +79,13 @@
 
         header {
             text-align: center;
-            margin: 20px 0 30px;
+            margin: 20px 0 20px;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             color: var(--accent-color);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             letter-spacing: 2px;
             display: inline-flex;
             align-items: center;
@@ -93,7 +93,7 @@
         }
 
         .header-star {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             animation: pulse 2s infinite;
         }
 
@@ -105,42 +105,34 @@
 
         p.subtitle {
             color: var(--subtitle-color);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px;
             width: 100%;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin: 25px 0 15px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            margin-bottom: 30px;
+            margin: 20px 0 40px;
         }
 
         .digital-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             text-align: center;
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .digital-card:hover {
@@ -156,56 +148,104 @@
         .card-free { border-top: 4px solid #10b981; }
 
         .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2.3rem;
+            margin-bottom: 10px;
         }
 
         .card-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--text-color);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
         }
 
         .card-desc {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--subtitle-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.5;
         }
 
         .card-price {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--accent-color);
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .price-free {
             color: #10b981 !important;
         }
 
-        .benefit-btn {
-            display: inline-block;
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .action-btn {
             background: var(--accent-color);
             color: var(--btn-text);
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .preview-btn {
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
         }
 
         .free-btn {
             background: #10b981;
             color: #ffffff;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
-        .benefit-btn:hover, .free-btn:hover {
-            transform: scale(1.05);
-            opacity: 0.95;
+        .action-btn:hover, .preview-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* نافذة المعاينة (Modal) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px; left: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
         }
 
         footer {
@@ -226,56 +266,99 @@
 
     <header>
         <h1>أَمَد <span class="header-star">✨</span></h1>
-        <p class="subtitle">مساحتك الهادئة للبطاقات الرقمية المميزة</p>
+        <p class="subtitle">مساحتك الهادئة للبطاقات الرقمية الفورية</p>
     </header>
 
     <div class="container">
-        <!-- قسم البطاقات المجانية -->
-        <div class="section-title">🎁 البطاقات المجانية</div>
+        <!-- البطاقات مباشرة في الواجهة -->
         <div class="card-grid">
+            <!-- البطاقة المجانية -->
             <div class="digital-card card-free">
-                <div class="card-icon">🌟</div>
-                <div class="card-title">بطاقة ترحيبية مجانية</div>
-                <div class="card-desc">نسخة إهداء هادئة ومجانية لكل زوار مساحتنا.</div>
-                <div class="card-price price-free">مجاناً</div>
-                <a href="#" class="benefit-btn free-btn">تحميل البطاقة</a>
+                <div>
+                    <div class="card-icon">🌟</div>
+                    <div class="card-title">بطاقة ترحيبية مجانية</div>
+                    <div class="card-desc">هدية هادئة ومجانية لكل زوار مساحتنا الرقمية.</div>
+                </div>
+                <div>
+                    <div class="card-price price-free">مجاناً</div>
+                    <div class="btn-group">
+                        <a href="https://wa.me/97336207720?text=مرحباً، أرغب في الحصول على البطاقة الترحيبية المجانية من موقع أَمَد 🌟" target="_blank" class="action-btn free-btn">تحميل البطاقة</a>
+                        <button class="preview-btn" onclick="openModal('free')">معاينة شكل البطاقة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة وردية -->
+            <div class="digital-card card-pink">
+                <div>
+                    <div class="card-icon">🌸</div>
+                    <div class="card-title">بطاقة تهنئة وردية</div>
+                    <div class="card-desc">تصميم رقيق للمناسبات السعيدة وأعياد الميلاد.</div>
+                </div>
+                <div>
+                    <div class="card-price">500 فلس</div>
+                    <div class="btn-group">
+                        <a href="https://wa.me/97336207720?text=مرحباً، أرغب في طلب بطاقة التهنئة الوردية (500 فلس) 🌸" target="_blank" class="action-btn">اطلب البطاقة</a>
+                        <button class="preview-btn" onclick="openModal('pink')">معاينة شكل البطاقة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة ذهبية -->
+            <div class="digital-card card-gold">
+                <div>
+                    <div class="card-icon">✨</div>
+                    <div class="card-title">بطاقة شكر وتقدير</div>
+                    <div class="card-desc">لمسة فخمة تعبر عن الامتنان بأسلوب راقي.</div>
+                </div>
+                <div>
+                    <div class="card-price">500 فلس</div>
+                    <div class="btn-group">
+                        <a href="https://wa.me/97336207720?text=مرحباً، أرغب في طلب بطاقة الشكر والتقدير (500 فلس) ✨" target="_blank" class="action-btn">اطلب البطاقة</a>
+                        <button class="preview-btn" onclick="openModal('gold')">معاينة شكل البطاقة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة زرقاء -->
+            <div class="digital-card card-blue">
+                <div>
+                    <div class="card-icon">🌊</div>
+                    <div class="card-title">بطاقة أماني هادئة</div>
+                    <div class="card-desc">عبارات ملهمة ومريحة للقلب بستايل عميق.</div>
+                </div>
+                <div>
+                    <div class="card-price">500 فلس</div>
+                    <div class="btn-group">
+                        <a href="https://wa.me/97336207720?text=مرحباً، أرغب في طلب بطاقة الأماني الهادئة (500 فلس) 🌊" target="_blank" class="action-btn">اطلب البطاقة</a>
+                        <button class="preview-btn" onclick="openModal('blue')">معاينة شكل البطاقة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة بنفسجية مخصصة -->
+            <div class="digital-card card-purple">
+                <div>
+                    <div class="card-icon">🔮</div>
+                    <div class="card-title">بطاقة مخصصة حسب طلبك</div>
+                    <div class="card-desc">اكتبي العبارة التي ترغبين بها وسنصممها لكِ.</div>
+                </div>
+                <div>
+                    <div class="card-price">500 فلس</div>
+                    <div class="btn-group">
+                        <a href="https://wa.me/97336207720?text=مرحباً، أرغب في طلب بطاقة مخصصة حسب الطلب (500 فلس) 🔮" target="_blank" class="action-btn">اطلب البطاقة</a>
+                        <button class="preview-btn" onclick="openModal('purple')">معاينة شكل البطاقة</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- قسم البطاقات المميزة -->
-        <div class="section-title">💎 البطاقات الرقمية المميزة</div>
-        <div class="card-grid">
-            <div class="digital-card card-pink">
-                <div class="card-icon">🌸</div>
-                <div class="card-title">بطاقة تهنئة وردية</div>
-                <div class="card-desc">تصميم رقيق وهادئ للمناسبات السعيدة وأعياد الميلاد.</div>
-                <div class="card-price">500 فلس</div>
-                <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
-            </div>
-
-            <div class="digital-card card-gold">
-                <div class="card-icon">✨</div>
-                <div class="card-title">بطاقة شكر وتقدير</div>
-                <div class="card-desc">لمسة فخمة تعبر عن الامتنان بأسلوب راقي.</div>
-                <div class="card-price">500 فلس</div>
-                <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
-            </div>
-
-            <div class="digital-card card-blue">
-                <div class="card-icon">🌊</div>
-                <div class="card-title">بطاقة أماني هادئة</div>
-                <div class="card-desc">عبارات ملهمة ومريحة للقلب بستايل عميق.</div>
-                <div class="card-price">500 فلس</div>
-                <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
-            </div>
-
-            <div class="digital-card card-purple">
-                <div class="card-icon">🔮</div>
-                <div class="card-title">بطاقة مخصصة حسب طلبك</div>
-                <div class="card-desc">اكتبي العبارة التي ترغبين بها وسنصممها خصيصاً لك.</div>
-                <div class="card-price">500 فلس</div>
-                <a href="https://www.benefitpay.bh" target="_blank" class="benefit-btn">اطلبها عبر BenefitPay</a>
-            </div>
+    <!-- نافذة المعاينة التفاعلية -->
+    <div id="cardModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModalDirect()">&times;</span>
+            <div id="modalBody"></div>
         </div>
     </div>
 
@@ -287,11 +370,28 @@
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
-                html.setAttribute('data-theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-            }
+            html.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        const cardContents = {
+            free: "<h3>🌟 البطاقة الترحيبية المجانية</h3><p style='margin:15px 0; line-height:1.6;'>أهلاً بك في مساحتك الهادئة..<br>شكراً لزيارتك موقع أَمَد، نأمل أن تجد هنا ما يُلامس قلبك ويسعد روحك.</p><p style='font-size:0.85rem; color:var(--accent-color);'>هدية مجانية من موقع أَمَد</p>",
+            pink: "<h3>🌸 بطاقة التهنئة السعيدة</h3><p style='margin:15px 0; line-height:1.6;'>لأن الأوقات السعيدة تستحق أن تُخلّد... كل عام وأنتِ بألف خير، جعل الله أيامك كلها فرح وسعادة.</p><p style='font-size:0.85rem; color:var(--accent-color);'>إهداء خاص عبر متجر أَمَد ✨</p>",
+            gold: "<h3>✨ بطاقة الشكر والامتنان</h3><p style='margin:15px 0; line-height:1.6;'>كلمات الشكر تعجز عن إيفاء حقك... شكراً لأنك أضفت بصمة لا تُنسى.</p><p style='font-size:0.85rem; color:var(--accent-color);'>خالص الامتنان من أَمَد 💛</p>",
+            blue: "<h3>🌊 بطاقة الأماني الهادئة</h3><p style='margin:15px 0; line-height:1.6;'>سلامٌ على قلبك.. عسى أن تلازمك الطمأنينة في كل خطوة، وأن تنبت أمانيك ضياءً.</p><p style='font-size:0.85rem; color:var(--accent-color);'>مساحتك الهادئة في أَمَد ✨</p>",
+            purple: "<h3>🔮 بطاقة الطلب الخاص</h3><p style='margin:15px 0; line-height:1.6; font-style:italic;'>[ هنا تظهر العبارة المخصصة حسب طلب الزبون والمناسبة ]</p><p style='font-size:0.85rem; color:var(--accent-color);'>صُممت بحب عبر متجر أَمَد</p>"
+        };
+
+        function openModal(type) {
+            document.getElementById('modalBody').innerHTML = cardContents[type];
+            document.getElementById('cardModal').style.display = 'flex';
+        }
+
+        function closeModal(event) {
+            document.getElementById('cardModal').style.display = 'none';
+        }
+
+        function closeModalDirect() {
+            document.getElementById('cardModal').style.display = 'none';
         }
     </script>
 
