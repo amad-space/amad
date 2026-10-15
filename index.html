@@ -8,12 +8,12 @@
         :root {
             --bg-1: #fef6fb;
             --bg-2: #f2f6ff;
-            --surface: rgba(255, 255, 255, 0.75);
+            --surface: rgba(255, 255, 255, 0.85);
             --text-main: #2d2a32;
             --text-sub: #7a7585;
             --accent: #e06d9b;
             --border-glow: rgba(224, 109, 155, 0.25);
-            --input-bg: rgba(255, 255, 255, 0.85);
+            --input-bg: rgba(255, 255, 255, 0.9);
         }
 
         [data-theme="lavender"] {
@@ -31,7 +31,9 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            direction: rtl;
+            text-align: right;
+            transition: all 0.5s ease;
         }
 
         body {
@@ -54,7 +56,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* خلفية النجوم والجزيئات المتحركة الحية */
+        /* سماء النجوم المتلألئة الحية في الخلفية */
         .cosmos-sky {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -81,7 +83,7 @@
             100% { transform: translateY(0px) rotate(360deg); }
         }
 
-        /* محتوى الموقع */
+        /* محتوى الموقع يظهر فوق النجوم */
         .magic-controls, header, .container, footer {
             position: relative;
             z-index: 2;
@@ -93,9 +95,9 @@
             align-items: center;
             gap: 12px;
             background: var(--surface);
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 50px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
             backdrop-filter: blur(15px);
             margin-bottom: 35px;
             border: 1px solid var(--border-glow);
@@ -118,7 +120,7 @@
         h1 {
             font-size: 4.2rem;
             color: var(--accent);
-            letter-spacing: 8px;
+            letter-spacing: 6px;
             margin-bottom: 12px;
             font-weight: 300;
             text-shadow: 0 0 30px var(--border-glow);
@@ -127,34 +129,34 @@
         p.subtitle {
             color: var(--text-sub);
             font-size: 1.1rem;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .container {
-            max-width: 950px;
+            max-width: 900px;
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 45px;
         }
 
-        /* بطاقات المعرض الحية */
         .dream-card {
             background: var(--surface);
             border: 1px solid var(--border-glow);
-            border-radius: 40px;
-            padding: 50px;
-            backdrop-filter: blur(25px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.05);
+            border-radius: 35px;
+            padding: 45px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
             position: relative;
-            overflow: hidden;
         }
 
         .dream-card::before {
             content: '';
             position: absolute;
-            top: 0; right: 0; width: 8px; height: 100%;
+            top: 0; right: 0; width: 6px; height: 100%;
             background: var(--accent);
+            border-top-right-radius: 35px;
+            border-bottom-right-radius: 35px;
         }
 
         .card-title {
@@ -167,15 +169,15 @@
         .card-desc {
             font-size: 1rem;
             color: var(--text-sub);
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             line-height: 1.8;
         }
 
         .grid-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 22px;
-            margin-bottom: 22px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         @media(max-width: 768px) {
@@ -186,8 +188,8 @@
             width: 100%;
             background: var(--input-bg);
             border: 1px solid var(--border-glow);
-            border-radius: 20px;
-            padding: 18px 22px;
+            border-radius: 18px;
+            padding: 16px 20px;
             color: var(--text-main);
             font-size: 1rem;
             outline: none;
@@ -195,61 +197,58 @@
 
         .magic-textarea {
             grid-column: 1 / -1;
-            height: 130px;
+            height: 120px;
             resize: none;
         }
 
         .magic-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 20px var(--border-glow);
             background: #ffffff;
+            box-shadow: 0 0 20px var(--border-glow);
         }
 
-        /* معاينة حية سحرية */
         .live-window {
             background: rgba(255, 255, 255, 0.65);
             border: 1.5px dashed var(--accent);
-            border-radius: 28px;
-            padding: 40px;
+            border-radius: 24px;
+            padding: 35px;
             text-align: center;
-            margin: 30px 0;
-            box-shadow: inset 0 0 20px rgba(255,255,255,0.5);
+            margin: 25px 0;
         }
 
         .window-badge {
             font-size: 0.75rem;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 600;
         }
 
         .window-text {
-            font-size: 1.4rem;
-            line-height: 1.9;
-            margin-bottom: 18px;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
             font-style: italic;
         }
 
         .magic-btn {
             background: var(--accent);
             color: #ffffff;
-            padding: 18px;
-            border-radius: 25px;
+            padding: 16px;
+            border-radius: 22px;
             font-weight: 500;
             font-size: 1.05rem;
             border: none;
             cursor: pointer;
             width: 100%;
-            letter-spacing: 1.5px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
 
         .magic-btn:hover {
             transform: translateY(-3px);
             opacity: 0.92;
-            box-shadow: 0 15px 35px var(--border-glow);
         }
 
         .price-pill {
@@ -264,21 +263,22 @@
         }
 
         footer {
-            margin-top: 60px;
+            margin-top: 50px;
             color: var(--text-sub);
             font-size: 0.9rem;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            text-align: center;
         }
     </style>
 </head>
 <body data-theme="rose">
 
-    <!-- السماء الكونية المتحركة -->
+    <!-- خلفية النجوم السحرية المتلألئة -->
     <div class="cosmos-sky" id="cosmosSky"></div>
 
-    <!-- شريط سحري لتغيير ألوان الموقع بالكامل حسب رغبة الزبون -->
+    <!-- شريط سحري لتغيير ألوان الموقع حسب رغبة الزبون -->
     <div class="magic-controls">
-        <span style="font-size: 0.85rem; color: var(--text-sub);">لوحة ألوان المزاج:</span>
+        <span style="font-size: 0.85rem; color: var(--text-sub);">اختر لون المزاج:</span>
         <div class="theme-orb" style="background: #e06d9b;" onclick="setSiteTheme('rose')" title="وردي حالم"></div>
         <div class="theme-orb" style="background: #8b6fd9;" onclick="setSiteTheme('lavender')" title="لافندر سحري"></div>
         <div class="theme-orb" style="background: #43b08a;" onclick="setSiteTheme('mint')" title="نعناع منعش"></div>
@@ -287,69 +287,69 @@
 
     <header>
         <h1>أَمَد ✦</h1>
-        <p class="subtitle">عالم حيي، ساحر، ومخصص لصنع أثر المشاعر</p>
+        <p class="subtitle">مساحتك الحية لصنع أثر المشاعر والإهداءات</p>
     </header>
 
     <div class="container">
         
-        <!-- 1. القسم الأساسي: مساحة الإهداء الفوري الحر (مجاني) -->
+        <!-- 1. الإهداء الفوري الحر (مجاني) -->
         <div class="dream-card">
-            <span class="price-pill">إهداء حر مجاني ✦</span>
-            <div class="card-title">مساحة الأمنيات الفورية</div>
-            <div class="card-desc">دَوّن رسالتك الصادقة بكل حرية، وشاهدها تتحول أمام عينيك إلى بطاقة طافية تنبض بالصفاء والنقاء.</div>
+            <span class="price-pill">مجاني بالكامل ✦</span>
+            <div class="card-title">مساحة الإهداء الفوري الحر</div>
+            <div class="card-desc">اكتب رسالتك الصادقة واهديها لمن تحب في أي وقت تشاء، بدون أي تكلفة.</div>
             
             <div class="grid-layout">
                 <input type="text" id="freeTo" class="magic-input" placeholder="إلى (اسم المُهدى إليه)..." oninput="updateFreeLive()">
                 <input type="text" id="freeFrom" class="magic-input" placeholder="من (اسم المُهدي)..." oninput="updateFreeLive()">
-                <textarea id="freeText" class="magic-input magic-textarea" placeholder="اكتب رسالتك العائمة هنا..." oninput="updateFreeLive()"></textarea>
+                <textarea id="freeText" class="magic-input magic-textarea" placeholder="اكتب رسالتك الحرة هنا..." oninput="updateFreeLive()"></textarea>
             </div>
 
             <div class="live-window">
-                <div class="window-badge">معاينة الأمنية الحية</div>
-                <div id="freePrevTo" style="font-weight: 500; margin-bottom: 10px; color: var(--accent);">إلى: المُهدى إليه</div>
-                <div id="freePrevText" class="window-text">"هنا تظهر الكلمات وكأنها تطفو في سماء هادئة..."</div>
+                <div class="window-badge">معاينة الإهداء الحر</div>
+                <div id="freePrevTo" style="font-weight: 500; margin-bottom: 8px; color: var(--accent);">إلى: المُهدى إليه</div>
+                <div id="freePrevText" class="window-text">"هنا تظهر رسالتك الحرة بكل نقاء..."</div>
                 <div id="freePrevFrom" style="font-size: 0.85rem; color: var(--text-sub);">— من: المُهدي</div>
             </div>
 
-            <button class="magic-btn" onclick="dispatchFreeWish()">إرسال الإهداء الفوري الآن 💬</button>
+            <button class="magic-btn" onclick="dispatchFreeWish()">أرسل هذا الإهداء الفوري الآن 💬</button>
         </div>
 
-        <!-- 2. القسم الثاني: البطاقات الثابتة الجاهزة (500 فلس) مع خيار اختيار وقت الإرسال السحري -->
+        <!-- 2. البطاقات الثابتة (500 فلس) مع خيار وقت الإرسال -->
         <div class="dream-card">
             <span class="price-pill">500 فلس ✦</span>
-            <div class="card-title">غرفة البطاقات الثابتة والموقوتة</div>
-            <div class="card-desc">تصاميم موقعنا الثابتة الأنيقة. اختر رسالتك، حدد رقم المُستلم، وضع **"ساعة وسحر الإرسال"** لتصل في اللحظة المعينة بدقة.</div>
+            <div class="card-title">البطاقات الثابتة الجاهزة والموقوتة</div>
+            <div class="card-desc">تصاميم موقعنا الثابتة الأنيقة. اختر رسالتك، حدد وقت الإرسال المفضل ورقم المُستلم لتصل البطاقة بدقة.</div>
             
             <div class="grid-layout">
                 <input type="text" id="cardTo" class="magic-input" placeholder="إلى (اسم المُهدى إليه)..." oninput="updateCardLive()">
-                <input type="text" id="recipientPhone" class="magic-input" placeholder="رقم هاتف المُستلم للبطاقة..." oninput="updateCardLive()">
+                <input type="text" id="recipientPhone" class="magic-input" placeholder="رقم هاتف المُستلم..." oninput="updateCardLive()">
                 <input type="text" id="cardFrom" class="magic-input" placeholder="من (اسم المُهدي)..." oninput="updateCardLive()">
-                <input type="text" id="scheduleClock" class="magic-input" placeholder="ساعة الإرسال (مثال: المنتصف الليل / 8 مساءً)..." oninput="updateCardLive()">
+                <input type="text" id="scheduleClock" class="magic-input" placeholder="وقت الإرسال (مثال: غداً / 8 مساءً)..." oninput="updateCardLive()">
                 <textarea id="cardText" class="magic-input magic-textarea" placeholder="اكتب نص البطاقة الثابتة..." oninput="updateCardLive()"></textarea>
             </div>
 
             <div class="live-window">
-                <div class="window-badge">معاينة البطاقة الموقوتة</div>
-                <div id="cardPrevTo" style="font-weight: 500; margin-bottom: 10px; color: var(--accent);">إلى: المُهدى إليه</div>
+                <div class="window-badge">معاينة البطاقة الثابتة</div>
+                <div id="cardPrevTo" style="font-weight: 500; margin-bottom: 8px; color: var(--accent);">إلى: المُهدى إليه</div>
                 <div id="cardPrevText" class="window-text">"كلمات البطاقة الثابتة..."</div>
                 <div id="cardPrevFrom" style="font-size: 0.85rem; color: var(--text-sub);">— من: المُهدي</div>
             </div>
 
-            <button class="magic-btn" onclick="dispatchReadyCard()">طلب وإرسال البطاقة الموقوتة</button>
+            <button class="magic-btn" onclick="dispatchReadyCard()">طلب وإرسال البطاقة الجاهزة</button>
         </div>
 
-        <!-- 3. القسم الثالث: تصميم أَمَد الخاص الحصري (1.500 دينار - تصميم حسب الطلب حتى يرضى تماماً) -->
+        <!-- 3. تصميم أَمَد الخاص (1.5 دينار - حتى يرضى تماماً) -->
         <div class="dream-card" style="border-top: 6px solid var(--accent);">
             <span class="price-pill">1.500 دينار بحريني ✦</span>
-            <div class="card-title">مرسم أَمَد الخاص الحصري</div>
-            <div class="card-desc">هنا تُصنع الروائع! يختار الطرف الثاني كل ما يتمنه على ذوقه الفردي. صِف لي فكرتك، ذوقك، وتفاصيل خيالك، وسأقوم بتصميم البطاقة خصيصاً لك، ونعدل عليها **معاً حتى ترضى تماماً عن النتيجة النهائية**.</div>
+            <div class="card-title">تصميم أَمَد الخاص الحصري</div>
+            <div class="card-desc">يختار الطرف الثاني ذوقه بالكامل! صِف لي فكرتك، ذوقك، وتفاصيل خيالك، وسأقوم بتصميم البطاقة خصيصاً لك، ونعدل عليها معاً حتى ترضى تماماً عن النتيجة النهائية.</div>
             
             <div class="grid-layout">
                 <input type="text" id="customName" class="magic-input" placeholder="اسمك الكريم..." style="grid-column: 1 / -1;">
-                <textarea id="customVision" class="magic-input magic-textarea" placeholder="صِف ذوقك، ألوانك المفضلة، والفكرة التي ترغب في أن أرسمها وأصممها لك خصيصاً..."></textarea>
+                <textarea id="customVision" class="magic-input magic-textarea" placeholder="صِف ذوقك، ألوانك المفضلة، والفكرة التي ترغب في أن أصممها لك خصيصاً..."></textarea>
             </div>
 
-            <button class="magic-btn" onclick="dispatchCustomStudio()">ادخل مرسم التصميم الخاص (واتساب) ✦</button>
+            <button class="magic-btn" onclick="dispatchCustomStudio()">ابدأ تصميمك الخاص معي (واتساب) ✦</button>
         </div>
 
     </div>
@@ -359,9 +359,9 @@
     </footer>
 
     <script>
-        // خلق سماء كونية حية تسبح فيها النجوم والجزيئات المتلألئة
+        // خلق سماء النجوم المتلألئة المتحركة في الخلفية تلقائياً
         const cosmos = document.getElementById('cosmosSky');
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 45; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
             const size = Math.random() * 3.5 + 1;
@@ -385,7 +385,7 @@
 
             document.getElementById('freePrevTo').innerText = to ? "إلى: " + to : "إلى: المُهدى إليه";
             document.getElementById('freePrevFrom').innerText = from ? "— من: " + from : "— من: المُهدي";
-            document.getElementById('freePrevText').innerText = text ? `"${text}"` : `"هنا تظهر الكلمات وكأنها تطفو في سماء هادئة..."`;
+            document.getElementById('freePrevText').innerText = text ? `"${text}"` : `"هنا تظهر رسالتك الحرة بكل نقاء..."`;
         }
 
         function updateCardLive() {
@@ -395,7 +395,7 @@
             const clock = document.getElementById('scheduleClock').value.trim();
 
             let toDisplay = to ? "إلى: " + to : "إلى: المُهدى إليه";
-            if (clock) toDisplay += ` (وقت السحر: ${clock})`;
+            if (clock) toDisplay += ` (وقت الإرسال: ${clock})`;
 
             document.getElementById('cardPrevTo').innerText = toDisplay;
             document.getElementById('cardPrevFrom').innerText = from ? "— من: " + from : "— من: المُهدي";
@@ -408,11 +408,11 @@
             const text = document.getElementById('freeText').value.trim();
 
             if (!text) {
-                alert('الرجاء كتابة رسالة الأمنية أولاً!');
+                alert('الرجاء كتابة الرسالة أولاً!');
                 return;
             }
 
-            let msg = `✦ أمنية عائمة عبر أَمَد:\n\nإلى: ${to || 'غير محدد'}\nالرسالة: "${text}"\nمن: ${from || 'غير محدد'}`;
+            let msg = `✦ إهداء مجاني عبر أَمَد:\n\nإلى: ${to || 'غير محدد'}\nالرسالة: "${text}"\nمن: ${from || 'غير محدد'}`;
             window.open("https://wa.me/97336207720?text=" + encodeURIComponent(msg), "_blank");
         }
 
@@ -428,7 +428,7 @@
                 return;
             }
 
-            let msg = `✦ طلب بطاقة موقوتة (500 فلس):\n\nإلى: ${to || 'غير محدد'}\nرقم المُستلم: ${phone || 'غير مضاف'}\nوقت الإرسال السحري: ${clock || 'فوري'}\nالرسالة: "${text}"\nمن: ${from || 'غير محدد'}`;
+            let msg = `✦ طلب بطاقة ثابتة (500 فلس):\n\nإلى: ${to || 'غير محدد'}\nرقم المُستلم: ${phone || 'غير مضاف'}\nوقت الإرسال المطلوب: ${clock || 'فوري'}\nالرسالة: "${text}"\nمن: ${from || 'غير محدد'}`;
             window.open("https://wa.me/97336207720?text=" + encodeURIComponent(msg), "_blank");
         }
 
@@ -437,11 +437,11 @@
             const vision = document.getElementById('customVision').value.trim();
 
             if (!vision) {
-                alert('الرجاء وصف فكرتك لنبدأ رحلة التصميم الساحرة!');
+                alert('الرجاء وصف فكرتك لنبدأ رحلة التصميم!');
                 return;
             }
 
-            let msg = `✦ طلب من مرسم أَمَد الخاص (1.5 دينار):\n\nالاسم: ${name || 'غير محدد'}\nالرؤية والتفاصيل المطلوبة:\n${vision}`;
+            let msg = `✦ طلب من تصميم أَمَد الخاص (1.5 دينار):\n\nالاسم: ${name || 'غير محدد'}\nالرؤية والتفاصيل المطلوبة:\n${vision}`;
             window.open("https://wa.me/97336207720?text=" + encodeURIComponent(msg), "_blank");
         }
     </script>
