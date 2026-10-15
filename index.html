@@ -3,32 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أَمَد | استوديو البطاقات الرقمية الفاخرة</title>
+    <title>أَمَد | مساحتك الهادئة للبطاقات الرقمية الفاخرة</title>
     <style>
         :root {
-            --bg-gradient: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
-            --card-bg: rgba(255, 255, 255, 0.04);
-            --text-color: #f8fafc;
-            --subtitle-color: #94a3b8;
-            --accent-color: #f472b6;
-            --accent-glow: rgba(244, 114, 182, 0.25);
-            --border-color: rgba(244, 114, 182, 0.25);
-            --btn-text: #0f172a;
-            --input-bg: rgba(255, 255, 255, 0.06);
-            --card-preview-bg: linear-gradient(135deg, rgba(244, 114, 182, 0.08), rgba(255, 255, 255, 0.02));
+            --bg-gradient: linear-gradient(135deg, #fbcfe8, #e0e7ff);
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --text-color: #475569;
+            --subtitle-color: #64748b;
+            --accent-color: #ec4899;
+            --accent-glow: rgba(236, 72, 153, 0.2);
+            --border-color: rgba(236, 72, 153, 0.3);
+            --btn-text: #ffffff;
+            --input-bg: rgba(255, 255, 255, 0.9);
+            --card-preview-bg: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(255, 255, 255, 0.6));
         }
 
         [data-theme="light"] {
-            --bg-gradient: radial-gradient(circle at center, #fdf2f8 0%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.85);
+            --bg-gradient: linear-gradient(135deg, #fdf2f8, #f3e8ff);
+            --card-bg: rgba(255, 255, 255, 0.9);
             --text-color: #334155;
             --subtitle-color: #64748b;
             --accent-color: #db2777;
             --accent-glow: rgba(219, 39, 119, 0.15);
-            --border-color: rgba(219, 39, 119, 0.2);
+            --border-color: rgba(219, 39, 119, 0.25);
             --btn-text: #ffffff;
-            --input-bg: rgba(255, 255, 255, 0.7);
-            --card-preview-bg: linear-gradient(135deg, rgba(219, 39, 119, 0.05), rgba(255, 255, 255, 0.5));
+            --input-bg: rgba(255, 255, 255, 0.95);
+            --card-preview-bg: linear-gradient(135deg, rgba(219, 39, 119, 0.05), rgba(255, 255, 255, 0.8));
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #1e1b4b, #312e81);
+            --card-bg: rgba(255, 255, 255, 0.06);
+            --text-color: #f8fafc;
+            --subtitle-color: #cbd5e1;
+            --accent-color: #f472b6;
+            --accent-glow: rgba(244, 114, 182, 0.3);
+            --border-color: rgba(244, 114, 182, 0.3);
+            --btn-text: #0f172a;
+            --input-bg: rgba(255, 255, 255, 0.08);
+            --card-preview-bg: linear-gradient(135deg, rgba(244, 114, 182, 0.1), rgba(255, 255, 255, 0.02));
         }
 
         * {
@@ -110,7 +123,7 @@
             width: 100%;
         }
 
-        /* قسم البطاقة الجاهزة (0.5 د.ب) وتخصيصها */
+        /* قسم البطاقة الجاهزة (500 فلس) */
         .studio-box {
             background: var(--card-bg);
             border: 2px solid var(--border-color);
@@ -223,7 +236,7 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        /* معاينة حية */
+        /* معاينة حية للبطاقة الجاهزة */
         .live-preview {
             background: var(--card-preview-bg);
             border: 1px dashed var(--accent-color);
@@ -428,7 +441,7 @@
 <body>
 
     <div class="top-bar">
-        <button class="theme-toggle" onclick="toggleTheme()">🌓 تبديل المظهر الهادئ</button>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 تبديل المظهر</button>
     </div>
 
     <header>
@@ -438,10 +451,10 @@
 
     <div class="container">
         
-        <!-- قسم البطاقة الجاهزة (تصميم ثابت من الموقع مع إمكانية تغيير اللون - 500 فلس) -->
+        <!-- قسم البطاقة الجاهزة (تصميم ثابت مع إمكانية تغيير اللون - 500 فلس) -->
         <div class="studio-box">
             <div class="studio-title">البطاقة الجاهزة (بتصميم الموقع الثابت)</div>
-            <div class="studio-desc">اختر طابع الألوان المفضل لديك للبطاقة، اكتب رسالتك، أضف رقم الشخص المُراد إرسال البطاقة إليه، واطلبها فوراً!</div>
+            <div class="studio-desc">اختر طابع الألوان الهادئ للبطاقة، اكتب رسالتك، أضف رقم الشخص المُراد إرسال البطاقة إليه، واطلبها فوراً!</div>
             
             <span class="color-picker-label">اختر اللون المخصص حسب الطلب:</span>
             <div class="color-options">
@@ -463,7 +476,7 @@
                     <input type="text" id="cardFrom" class="custom-input" placeholder="اسم المُهدي..." oninput="updatePreview()">
                 </div>
                 <div class="amad-field-wrapper">
-                    <input type="text" id="targetPhone" class="custom-input" placeholder="رقم هاتف الشخص المجهول لتوجيه البطاقة..." oninput="updatePreview()">
+                    <input type="text" id="targetPhone" class="custom-input" placeholder="رقم الشخص المجهول لتوجيه البطاقة..." oninput="updatePreview()">
                 </div>
                 <div class="amad-field-wrapper" style="grid-column: 1 / -1;">
                     <textarea id="cardText" class="custom-textarea" placeholder="اكتب عبارة الإهداء أو الرسالة هنا..." oninput="updatePreview()"></textarea>
@@ -490,7 +503,7 @@
                 <div>
                     <div class="card-icon">✦</div>
                     <div class="card-title">تصميم خاص حسب رغبتك</div>
-                    <div class="card-desc">صف/ي ما تريده من فكرة أو تفاصيل، وسأقوم بتصميم البطاقة بالكامل خصيصاً لك وبإشرافي الفني الشخصي.</div>
+                    <div class="card-desc">صصف/ي ما تريده من فكرة أو تفاصيل، وسأقوم بتصميم البطاقة بالكامل خصيصاً لك وبإشرافي الفني الشخصي.</div>
                 </div>
                 <div>
                     <div class="card-price">1.000 د.ب</div>
@@ -520,8 +533,14 @@
 
         function toggleTheme() {
             const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            html.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+            } else if (currentTheme === 'light') {
+                html.setAttribute('data-theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
         }
 
         function setCardTheme(color, element) {
