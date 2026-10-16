@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>أَمَدْ — رسائل تنتظر نجمتها</title>
+<link rel="icon" href="amad-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Amiri:wght@400;700&family=Readex+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -18,7 +19,7 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;min-height:100vh;font-family:'Readex Pro',Tahoma,sans-serif;color:var(--ink);
   background:linear-gradient(160deg,color-mix(in srgb,var(--a) 55%,var(--base)),color-mix(in srgb,var(--b) 55%,var(--base)) 55%,color-mix(in srgb,var(--c) 55%,var(--base)));
   background-attachment:fixed;transition:background 3s}
-.wrap{max-width:560px;margin:0 auto;padding:22px 18px 60px;position:relative;z-index:1}
+.wrap{max-width:560px;margin:0 auto;padding:22px 18px 60px}
 header{text-align:center;padding:28px 0 10px}
 .star{width:92px;height:92px;display:block;margin:0 auto 6px;animation:spin 40s linear infinite}
 .star path{fill:var(--gold);stroke:#fff;stroke-width:1.5;stroke-linejoin:round}
@@ -54,16 +55,22 @@ h2{font-size:18px;margin:34px 0 12px;font-weight:600}
 .sm{padding:6px 12px;font-size:13px}
 .pop{animation:pop .9s}
 @keyframes pop{0%{transform:scale(.8) rotate(-3deg);opacity:0}60%{transform:scale(1.05)}100%{transform:none;opacity:1}}
-.sample{position:relative;width:min(88vw,340px);aspect-ratio:4/5;margin:0 auto;border-radius:26px;padding:26px 28px;display:flex;flex-direction:column;text-align:center;color:#4a4458;overflow:hidden;background:linear-gradient(155deg,var(--a),var(--c) 55%,var(--b));box-shadow:0 18px 40px rgba(110,90,150,.25);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-.sample::before{content:"";position:absolute;inset:10px;border:1.5px solid var(--gold);border-radius:18px;pointer-events:none}
-.sample h3{font-family:'Aref Ruqaa',serif;font-size:30px;margin:6px 0}
-.sample p{flex:1;display:flex;align-items:center;justify-content:center;font-family:'Aref Ruqaa',serif;font-size:21px;line-height:1.9;margin:0;white-space:pre-line}
+.pcard{position:relative;width:min(88vw,340px);aspect-ratio:4/5;margin:0 auto;border-radius:28px;padding:22px 28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;color:#4a4458;overflow:hidden;background:linear-gradient(155deg,var(--a),var(--c) 55%,var(--b));box-shadow:0 22px 46px rgba(110,90,150,.28);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.pcard::before{content:"";position:absolute;inset:10px;border:1.5px solid var(--gold);border-radius:20px;pointer-events:none}
+.pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%);transform:translateX(120%);animation:sh 6s infinite;pointer-events:none}
+@keyframes sh{to{transform:translateX(-120%)}}
+.pe{width:50px;height:50px;color:var(--gold)}
+.pcard h3{font-family:'Aref Ruqaa',serif;font-size:28px;margin:6px 0 0}
+.pcard p{flex:1;display:flex;align-items:center;justify-content:center;font-family:'Aref Ruqaa',serif;font-size:21px;line-height:1.9;margin:0;white-space:pre-line}
+.pcard .sg{font-family:'Aref Ruqaa',serif;font-size:16px;opacity:.85}
 .wm{position:absolute;inset:-40%;display:flex;flex-wrap:wrap;gap:34px 26px;align-content:center;justify-content:center;transform:rotate(-24deg);pointer-events:none;z-index:5}
 .wm span{font-size:15px;font-weight:600;color:rgba(74,68,88,.3);white-space:nowrap}
+
+.wrap{position:relative;z-index:1}
 #stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .sp{position:absolute;background:var(--gold);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);animation:tw 4s ease-in-out infinite;opacity:.2}
 @keyframes tw{0%,100%{opacity:.12;transform:scale(.6) rotate(0)}50%{opacity:.9;transform:scale(1.15) rotate(45deg)}}
-@media (prefers-reduced-motion:reduce){.star,.sp{animation:none}body{transition:none}}
+@media (prefers-reduced-motion:reduce){.star,.sp,.pcard::after{animation:none}body{transition:none}}
 </style>
 </head>
 <body>
@@ -103,12 +110,16 @@ h2{font-size:18px;margin:34px 0 12px;font-weight:600}
 </section>
 
 <h2>نموذج بطاقة أَمَد المميزة</h2>
-<div class="sample" id="sample" aria-label="نموذج بطاقة، للعرض فقط">
-  <div style="font-size:36px">✨</div>
+<div class="pcard" id="sample" aria-label="نموذج بطاقة، للعرض فقط">
+  <svg class="pe" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="27" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" stroke-dasharray="2 3"/><path d="M30 14C31.5 24 36 28.5 46 30C36 31.5 31.5 36 30 46C28.5 36 24 31.5 14 30C24 28.5 28.5 24 30 14Z" fill="currentColor"/></svg>
   <h3>إلى من أحب</h3>
   <p>هذا شكل بطاقتك المميزة،
 نجهزها لك ونرسلها على الواتساب جاهزة.</p>
-  <div class="meta" style="justify-content:center">— أَمَد ✨</div>
+  <div class="sg">— من نجمة أَمَد ✨</div>
+  <i class="sp" style="width:26px;height:26px;top:22px;right:24px"></i>
+  <i class="sp" style="width:16px;height:16px;top:28px;left:28px;animation-delay:-1.3s"></i>
+  <i class="sp" style="width:20px;height:20px;bottom:24px;left:24px;animation-delay:-2.2s"></i>
+  <i class="sp" style="width:13px;height:13px;bottom:32px;right:32px;animation-delay:-.7s"></i>
 </div>
 <h2>سمائي</h2>
 <div id="sky"><p class="lock">ما فيه نجوم للحين. اكتب أول رسالة.</p></div>
@@ -120,6 +131,9 @@ h2{font-size:18px;margin:34px 0 12px;font-weight:600}
   <div class="row"><button class="ghost" id="catch">اصطد نجمة غريبة</button></div>
 </div>
 
+<h2>تابعنا</h2>
+<div class="row" id="soc"></div>
+
 <h2>لون الجو</h2>
 <div class="row"><button class="ghost" id="col">غيّر الألوان</button></div>
 
@@ -129,7 +143,7 @@ h2{font-size:18px;margin:34px 0 12px;font-weight:600}
 <script>
 const $=id=>document.getElementById(id);
 const K='amad_msgs';
-/* ===== ربط السيرفر (Supabase): الصقي المفتاح العام sb_publishable_ داخل SB_KEY ===== */
+/* ===== ربط السيرفر (Supabase): الصقي هنا رابط المشروع والمفتاح العام anon ===== */
 const SB_URL='https://syyboitismyrwtpluhln.supabase.co',SB_KEY='';
 function remote(m){
   if(!SB_URL||!SB_KEY)return;
@@ -164,7 +178,6 @@ function upd(){$('send').textContent=plan>=1?'اطلب عبر واتساب · '+
 [0,1,2].forEach(i=>$('p'+i).onclick=()=>{plan=i;vip=i===1;upd()});
 $('cb').onclick=()=>{const c=$('cd').value.trim().toUpperCase();if(CODES[c]){code=c;toast('تم الكود: خصم '+Math.round(CODES[c]*100)+'٪')}else{code=null;toast('الكود غير صحيح')}upd()};
 
-/* مزاج النجمة + اختصارات الوقت */
 let mood='';
 const MOODS=[['فرح','🌟',1],['شوق','🌙',3],['امتنان','🤍',4],['تشجيع','💪',1],['اعتذار','🕊️',2]];
 const PRE=[['بعد ساعة',36e5],['غداً',864e5],['بعد أسبوع',6048e5],['بعد شهر',2592e6],['بعد سنة',31536e6]];
@@ -172,7 +185,6 @@ function chip(box,txt,fn){const b=document.createElement('button');b.type='butto
 PRE.forEach(p=>chip($('presets'),p[0],()=>{$('when').value=localISO(new Date(Date.now()+p[1]))}));
 MOODS.forEach(m=>{const b=chip($('moods'),m[1]+' '+m[0],()=>{mood=mood===m[1]?'':m[1];ti=m[2];theme(ti);
   [...$('moods').children].forEach(x=>x.style.borderColor=(x===b&&mood)?'var(--gold)':'')})});
-
 $('send').onclick=()=>{
   const raw=$('txt').value.trim(),t=raw&&mood?mood+' '+raw:raw,w=new Date($('when').value).getTime();
   if(!t){toast('اكتب رسالتك أول');return}
@@ -240,6 +252,10 @@ const strangers=[
 ];
 $('catch').onclick=()=>{const v=strangers[Math.floor(Math.random()*strangers.length)],b=$('str');b.textContent='';const t=document.createElement('div');t.textContent=v[0];const m=document.createElement('div');m.className='src';m.textContent=v[1];b.append(t,m)};
 $('str').textContent='اضغط الزر وشوف أي نجمة تنزل لك.';
+/* حسابات المتجر: الصقي رابط كل حساب بين العلامتين، والفاضي ما يظهر */
+const SOCIAL=[['واتساب','https://wa.me/97336207720','💬'],['إنستغرام','https://www.instagram.com/amad.space','📸'],['تيك توك','https://www.tiktok.com/@amad.space','🎵']];
+SOCIAL.forEach(x=>{if(!x[1])return;const a=document.createElement('a');a.className='ghost';a.href=x[1];a.target='_blank';a.rel='noopener';a.style.textDecoration='none';a.textContent=x[2]+' '+x[0];$('soc').appendChild(a)});
+$('soc').previousElementSibling.hidden=!$('soc').children.length;
 /* نموذج البطاقة: للعرض فقط */
 (()=>{const s=$('sample'),w=document.createElement('div');w.className='wm';
   for(let i=0;i<70;i++){const e=document.createElement('span');e.textContent='نموذج · أَمَد';w.appendChild(e)}
